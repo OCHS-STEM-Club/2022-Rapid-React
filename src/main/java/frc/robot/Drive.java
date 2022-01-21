@@ -1,5 +1,8 @@
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -16,10 +19,21 @@ public class Drive {
 
     private XboxController controller = new XboxController(0);
 
+    private double topSpeed = 0.5; //Percent value for drive motor speed from 0 to 1
+    private double xStickValue; //Variable to store the value from the Xbox Controller
+    private double yStickValue; //Variable to store the value from the Xbox Controller
+
     public Drive(){
         driveMotorLeft2.follow(driveMotorLeft1);
         driveMotorRight2.follow(driveMotorRight1);
         driveMotorRight1.setInverted(true);
+        //Number represents the time in seconds it takes for the motors to go from Neutral to Full speed
+        driveMotorLeft1.configOpenloopRamp(1);
+        driveMotorRight1.configOpenloopRamp(1);
+        //Brakes the motors; can be Coaster
+        driveMotorLeft1.setNeutralMode(NeutralMode.Brake);
+        driveMotorRight1.setNeutralMode(NeutralMode.Brake);
+
 
     }
 
@@ -27,7 +41,10 @@ public class Drive {
      * Main method of driving for Teleop
      */
     public void drive(){
-        differentialDrive.arcadeDrive(controller.getRawAxis(1), controller.getRawAxis(4));
+        xStickValue = -controller.getRawAxis(1) * topSpeed;
+        yStickValue = controller.getRawAxis(4) * topSpeed;
+        differentialDrive.arcadeDrive(xStickValue, yStickValue, false);
+
     }
 
 }
