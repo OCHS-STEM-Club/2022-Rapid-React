@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
     SmartDashboard.putNumber("Top Speed", 0.5);
+    
   }
 
   /**
@@ -85,6 +86,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     driveManager.drive();
     shooterMotor.shooter();
+    shooterMotor.shooterTemperature();
   }
 
   /** This function is called once when the robot is disabled. */
