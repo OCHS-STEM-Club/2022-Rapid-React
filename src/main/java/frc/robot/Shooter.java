@@ -1,5 +1,8 @@
 package frc.robot;
 
+import java.io.Console;
+import java.io.PrintStream;
+
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
@@ -18,7 +21,7 @@ public class Shooter {
   private Solenoid shooterCoolerSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 2); 
 
   //Constant that gets compared to the current shooter temperature
-  private static final double MAX_SHOOT_TEMP = 78;
+  private static final double MAX_SHOOT_TEMP = 72;
 
     public void shooter(){
       shooterMotor.set(controller.getRawAxis(1));
@@ -39,12 +42,14 @@ public class Shooter {
      //start of temperature check 
     if (controller.getRawButton(1) || shooterMotorTemperature >= MAX_SHOOT_TEMP){
       shooterCoolerSolenoid.set(true);
+      System.out.print(shooterMotorTemperature);
     } else { 
       shooterCoolerSolenoid.set(false);
     }
     SmartDashboard.putData("Solenoid Cooler Status", shooterCoolerSolenoid);
       
       return shooterMotorTemperature;  
+      
     
     }
 }
