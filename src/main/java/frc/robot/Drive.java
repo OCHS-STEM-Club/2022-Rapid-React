@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drive {
     private WPI_TalonFX driveMotorLeft1 = new WPI_TalonFX(3);
@@ -41,6 +42,7 @@ public class Drive {
      * Main method of driving for Teleop
      */
     public void drive(){
+        topSpeed = SmartDashboard.getNumber("Top Speed", 0.5);
         xStickValue = -controller.getRawAxis(1) * topSpeed;
         yStickValue = controller.getRawAxis(4) * topSpeed;
         differentialDrive.arcadeDrive(xStickValue, yStickValue, false);
