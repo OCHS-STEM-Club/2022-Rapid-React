@@ -20,12 +20,14 @@ public class Shooter {
   // Single solonoid for cooling shooter motor
   private Solenoid shooterCoolerSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 2); 
 
+
   //Constant that gets compared to the current shooter temperature
   private static final double MAX_SHOOT_TEMP = 72;
 
     public void shooter(){
       shooterMotor.set(controller.getRawAxis(1));
-      shooterMotor.configAllSettings(configs);
+      double shooterMotorPosition = shooterMotor.getSelectedSensorPosition(7);
+      SmartDashboard.putNumber("Shooter Position", shooterMotorPosition);
 
         // Spins motor
     }
