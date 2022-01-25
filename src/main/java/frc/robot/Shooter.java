@@ -26,8 +26,7 @@ public class Shooter {
 
     public void shooter(){
       shooterMotor.set(controller.getRawAxis(1));
-      double shooterMotorPosition = shooterMotor.getSelectedSensorPosition(7);
-      SmartDashboard.putNumber("Shooter Position", shooterMotorPosition);
+      
 
         // Spins motor
     }
@@ -36,7 +35,10 @@ public class Shooter {
     *and puts the output on Dashboard. "If else" statement takes the shooter motor 
     *temperature, and if it is heigher than the constant, then fire solonoids.
     */
-    public double shooterTemperature() {
+    public double shooterTemperatureAndPosition() {
+
+      double shooterMotorPosition = shooterMotor.getSelectedSensorPosition(7);
+      SmartDashboard.putNumber("Shooter Position", shooterMotorPosition);
 
       double shooterMotorTemperature = shooterMotor.getTemperature() * 1.8 + 32;
       SmartDashboard.putNumber("Shooter Temperature", shooterMotorTemperature);
@@ -50,8 +52,8 @@ public class Shooter {
     }
     SmartDashboard.putData("Solenoid Cooler Status", shooterCoolerSolenoid);
       
-      return shooterMotorTemperature;  
+      return shooterMotorTemperature; 
       
-    
     }
-}
+
+    }
