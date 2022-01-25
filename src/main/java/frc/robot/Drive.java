@@ -27,13 +27,13 @@ public class Drive {
     public Drive(){
         driveMotorLeft2.follow(driveMotorLeft1);
         driveMotorRight2.follow(driveMotorRight1);
-        driveMotorRight1.setInverted(true);
+        //driveMotorRight1.setInverted(true);
         //Number represents the time in seconds it takes for the motors to go from Neutral to Full speed
-        driveMotorLeft1.configOpenloopRamp(1);
-        driveMotorRight1.configOpenloopRamp(1);
+       // driveMotorLeft1.configOpenloopRamp(1);
+        //driveMotorRight1.configOpenloopRamp(1);
         //Brakes the motors; can be Coaster
-        driveMotorLeft1.setNeutralMode(NeutralMode.Brake);
-        driveMotorRight1.setNeutralMode(NeutralMode.Brake);
+        //driveMotorLeft1.setNeutralMode(NeutralMode.Brake);
+        //driveMotorRight1.setNeutralMode(NeutralMode.Brake);
 
 
     }
@@ -43,8 +43,8 @@ public class Drive {
      */
     public void drive(){
         topSpeed = SmartDashboard.getNumber("Top Speed", 0.5);
-        xStickValue = -controller.getRawAxis(1) * topSpeed;
-        yStickValue = controller.getRawAxis(4) * topSpeed;
+        xStickValue = controller.getRawAxis(4) * topSpeed;
+        yStickValue = -controller.getRawAxis(1) * topSpeed;
         differentialDrive.arcadeDrive(xStickValue, yStickValue, false);
 
     }
