@@ -34,8 +34,6 @@ public class Drive {
         //Brakes the motors; can be Coaster
         //driveMotorLeft1.setNeutralMode(NeutralMode.Brake);
         //driveMotorRight1.setNeutralMode(NeutralMode.Brake);
-
-
     }
 
     /**
@@ -47,6 +45,15 @@ public class Drive {
         yStickValue = -controller.getRawAxis(1) * topSpeed;
         differentialDrive.arcadeDrive(xStickValue, yStickValue, false);
 
+    }
+
+    public double driveMotorPosition(){
+        double driveMotorLeftPosition = driveMotorLeft1.getSelectedSensorPosition(3);
+        double driveMotorRightPosition = driveMotorRight1.getSelectedSensorPosition(5);
+        SmartDashboard.putNumber("Left motor Encoder", driveMotorLeftPosition);
+        SmartDashboard.putNumber("Right motor Encoder", driveMotorRightPosition);
+        return driveMotorRightPosition;
+        
     }
 
 }
