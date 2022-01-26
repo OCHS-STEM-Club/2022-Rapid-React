@@ -86,7 +86,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     driveManager.drive();
     shooterMotor.shooter();
-    shooterMotor.shooterTemperature();
+    shooterMotor.shooterTemperatureAndPosition();
   }
 
   /** This function is called once when the robot is disabled. */
