@@ -27,6 +27,7 @@ public class Drive {
     public Drive(){
         driveMotorLeft2.follow(driveMotorLeft1);
         driveMotorRight2.follow(driveMotorRight1);
+<<<<<<< HEAD
         //driveMotorRight1.setInverted(true);
         //Number represents the time in seconds it takes for the motors to go from Neutral to Full speed
        // driveMotorLeft1.configOpenloopRamp(1);
@@ -34,13 +35,25 @@ public class Drive {
         //Brakes the motors; can be Coaster
         //driveMotorLeft1.setNeutralMode(NeutralMode.Brake);
         //driveMotorRight1.setNeutralMode(NeutralMode.Brake);
+=======
+        //Number represents the time in seconds it takes for the motors to go from Neutral to Full speed
+        // driveMotorLeft1.configOpenloopRamp(1);
+        //driveMotorRight1.configOpenloopRamp(1);
+
+
+
+>>>>>>> Shooter_Code
     }
 
     /**
      * Main method of driving for Teleop
      */
     public void drive(){
+<<<<<<< HEAD
         topSpeed = SmartDashboard.getNumber("Top Speed", 0.75);
+=======
+        topSpeed = SmartDashboard.getNumber("Top Speed", 0.5);
+>>>>>>> Shooter_Code
         xStickValue = controller.getRawAxis(4) * topSpeed;
         yStickValue = -controller.getRawAxis(1) * topSpeed;
         differentialDrive.arcadeDrive(xStickValue, yStickValue, false);
