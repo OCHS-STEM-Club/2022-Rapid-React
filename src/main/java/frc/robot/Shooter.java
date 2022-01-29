@@ -3,6 +3,7 @@ package frc.robot;
 import java.io.Console;
 import java.io.PrintStream;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
@@ -14,6 +15,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Shooter {
   private WPI_TalonFX shooterMotor = new WPI_TalonFX(7);
 
+  
+
   private XboxController controller = new XboxController(1);
   // Encoder for shooter motor
   TalonFXConfiguration configs = new TalonFXConfiguration();
@@ -24,8 +27,12 @@ public class Shooter {
   //Constant that gets compared to the current shooter temperature
   private static final double MAX_SHOOT_TEMP = 72;
 
+  //Constant that is used in RotationRevolution
+  final int UNITPERREV = 2048; 
+
     public void shooter(){
-      shooterMotor.set(controller.getRawAxis(1));
+      shooterMotor.setNeutralMode(NeutralMode.Coast);
+      shooterMotor.set(controller.getRawAxis(1)); // when testing, put 0.5 to slow down the motor
       
 
         // Spins motor
@@ -39,6 +46,9 @@ public class Shooter {
 
       double shooterMotorPosition = shooterMotor.getSelectedSensorPosition(7);
       SmartDashboard.putNumber("Shooter Position", shooterMotorPosition);
+      double shooterMotorVelocity = shooterMotor.getSelectedSensorVelocity(7);
+      SmartDashboard.putNumber("Shooter Velocity" , shooterMotorVelocity);
+      System.out.println(shooterMotorVelocity); //velocity had issues, so we're printing it.
 
       double shooterMotorTemperature = shooterMotor.getTemperature() * 1.8 + 32;
       SmartDashboard.putNumber("Shooter Temperature", shooterMotorTemperature);
