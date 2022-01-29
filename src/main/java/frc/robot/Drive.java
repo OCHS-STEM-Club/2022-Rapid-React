@@ -27,14 +27,14 @@ public class Drive {
     public Drive(){
         driveMotorLeft2.follow(driveMotorLeft1);
         driveMotorRight2.follow(driveMotorRight1);
-        driveMotorRight1.setInverted(true);
-        //Number represents the time in seconds it takes for the motors to go from Neutral to Full speed
-        driveMotorLeft1.configOpenloopRamp(1);
-        driveMotorRight1.configOpenloopRamp(1);
-        //Brakes the motors; can be Coaster
-        driveMotorLeft1.setNeutralMode(NeutralMode.Brake);
-        driveMotorRight1.setNeutralMode(NeutralMode.Brake);
 
+        //driveMotorRight1.setInverted(true);
+        //Number represents the time in seconds it takes for the motors to go from Neutral to Full speed
+       // driveMotorLeft1.configOpenloopRamp(1);
+        //driveMotorRight1.configOpenloopRamp(1);
+        //Brakes the motors; can be Coaster
+        //driveMotorLeft1.setNeutralMode(NeutralMode.Brake);
+        //driveMotorRight1.setNeutralMode(NeutralMode.Brake);
 
     }
 
@@ -43,10 +43,27 @@ public class Drive {
      */
     public void drive(){
         topSpeed = SmartDashboard.getNumber("Top Speed", 0.5);
-        xStickValue = -controller.getRawAxis(1) * topSpeed;
-        yStickValue = controller.getRawAxis(4) * topSpeed;
+
+        xStickValue = controller.getRawAxis(4) * topSpeed;
+        yStickValue = -controller.getRawAxis(1) * topSpeed;
         differentialDrive.arcadeDrive(xStickValue, yStickValue, false);
 
     }
 
+    public double driveMotorPosition(){
+        double driveMotorLeftPosition = driveMotorLeft1.getSelectedSensorPosition(3);
+        double driveMotorRightPosition = driveMotorRight1.getSelectedSensorPosition(5);
+        
+        double driveMotorLeftPosition2 = driveMotorLeft2.getSelectedSensorPosition(4);
+        double driveMotorRightPosition2 = driveMotorRight2.getSelectedSensorPosition(6);
+
+        SmartDashboard.putNumber("Left motor Encoder", driveMotorLeftPosition);
+        SmartDashboard.putNumber("Left motor 2 Encoder", driveMotorLeftPosition2);
+
+        SmartDashboard.putNumber("Right motor Encoder", driveMotorRightPosition);
+        SmartDashboard.putNumber("Right motor 2 Encoder", driveMotorRightPosition2);
+
+        return driveMotorRightPosition;
+        
+    }
 }
