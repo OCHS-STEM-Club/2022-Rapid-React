@@ -31,8 +31,13 @@ public class Shooter {
   final int UNITPERREV = 2048; 
 
     public void shooter(){
+      if(controller.getRawButton(8)){
+        shooterMotor. set(-0.25);
+      }else if(controller.getRawButton(3)){
+        shooterMotor.set(0);
+      }
+
       shooterMotor.setNeutralMode(NeutralMode.Coast);
-      shooterMotor.set(controller.getRawAxis(1)); // when testing, put 0.5 to slow down the motor
       
 
         // Spins motor
@@ -44,11 +49,11 @@ public class Shooter {
     */
     public double shooterTemperatureAndPosition() {
 
-      double shooterMotorPosition = shooterMotor.getSelectedSensorPosition(7);
+      double shooterMotorPosition = shooterMotor.getSelectedSensorPosition();
       SmartDashboard.putNumber("Shooter Position", shooterMotorPosition);
-      double shooterMotorVelocity = shooterMotor.getSelectedSensorVelocity(7);
-      SmartDashboard.putNumber("Shooter Velocity" , shooterMotorVelocity);
-      System.out.println(shooterMotorVelocity); //velocity had issues, so we're printing it.
+      double shooterMotorVelocity = -shooterMotor.getSelectedSensorVelocity();
+      //Only to show RPM on smart dashboard
+      SmartDashboard.putNumber("Shooter Velocity in RPM" , shooterMotorVelocity/2048 * 600);
 
       double shooterMotorTemperature = shooterMotor.getTemperature() * 1.8 + 32;
       SmartDashboard.putNumber("Shooter Temperature", shooterMotorTemperature);
@@ -62,8 +67,13 @@ public class Shooter {
     }
     SmartDashboard.putData("Solenoid Cooler Status", shooterCoolerSolenoid);
       
-      return shooterMotorTemperature; 
-      
-    }
 
+    //if (controller.getRawButton(8)){
+      
+      
+    
+
+      return shooterMotorTemperature;
+    }
+    
     }
