@@ -16,8 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
   Drive driveManager = new Drive();
-  Shooter shooterMotor = new Shooter();
   Intake intakeMotor = new Intake();
+  Drive driveEncoder = new Drive();
+  //Shooter shooterMotor = new Shooter();
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -86,9 +87,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveManager.drive();
-    shooterMotor.shooter();
     shooterMotor.shooterTemperature();
     intakeMotor.intakeController();
+    driveEncoder.driveMotorPosition();
+    //shooterMotor.shooter();
+    //shooterMotor.shooterTemperatureAndPosition();
   }
 
   /** This function is called once when the robot is disabled. */
