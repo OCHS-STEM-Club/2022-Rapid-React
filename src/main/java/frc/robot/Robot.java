@@ -87,7 +87,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveManager.drive();
-    shooterMotor.shooterTemperature();
     intakeMotor.intakeController();
     driveEncoder.driveMotorPosition();
     //shooterMotor.shooter();
