@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
   Drive driveManager = new Drive();
+  Drive driveEncoder = new Drive();
   //Shooter shooterMotor = new Shooter();
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
@@ -85,6 +86,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveManager.drive();
+    driveEncoder.driveMotorPosition();
     //shooterMotor.shooter();
     //shooterMotor.shooterTemperatureAndPosition();
   }
