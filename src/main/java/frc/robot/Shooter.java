@@ -32,7 +32,7 @@ public class Shooter {
 
     public void shooter(){
       if(controller.getRawButton(8)){
-        shooterMotor. set(-0.25);
+        shooterMotor. set(-0.7);
       }else if(controller.getRawButton(3)){
         shooterMotor.set(0);
       }
@@ -68,12 +68,8 @@ public class Shooter {
     SmartDashboard.putData("Solenoid Cooler Status", shooterCoolerSolenoid);
       
 
-    //if (controller.getRawButton(8)){
-      
-      
-    
-
-      return shooterMotorTemperature;
+            
+    return shooterMotorTemperature;
     }
     
     }

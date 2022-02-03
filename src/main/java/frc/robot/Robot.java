@@ -18,7 +18,7 @@ public class Robot extends TimedRobot {
   Drive driveManager = new Drive();
   //Intake intakeMotor = new Intake();
   Drive driveEncoder = new Drive();
-  //Shooter shooterMotor = new Shooter();
+  Shooter shooterMotor = new Shooter();
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -90,8 +90,8 @@ public class Robot extends TimedRobot {
     //shooterMotor.shooterTemperature();
     //intakeMotor.intakeController();
     driveEncoder.driveMotorPosition();
-    //shooterMotor.shooter();
-    //shooterMotor.shooterTemperatureAndPosition();
+    shooterMotor.shooter();
+    shooterMotor.shooterTemperatureAndPosition();
   }
 
   /** This function is called once when the robot is disabled. */
