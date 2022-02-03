@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
   Drive driveManager = new Drive();
-  //Intake intakeMotor = new Intake();
+  Intake intakeMotor = new Intake();
   Drive driveEncoder = new Drive();
   Shooter shooterMotor = new Shooter();
   private static final String kDefaultAuto = "Default";
@@ -35,6 +35,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     SmartDashboard.putNumber("Top Speed", 0.5);
     
+   
+    
   }
 
   /**
@@ -45,7 +47,10 @@ public class Robot extends TimedRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+     //Setsup color match for color senor
+     intakeMotor.setupColor();
+  }
 
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
@@ -81,6 +86,7 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
+    
   }
 
   /** This function is called periodically during operator control. */
@@ -88,7 +94,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     driveManager.drive();
     //shooterMotor.shooterTemperature();
-    //intakeMotor.intakeController();
+    intakeMotor.intakeController();
+    intakeMotor.intakeColorSensor();
     driveEncoder.driveMotorPosition();
     shooterMotor.shooter();
     shooterMotor.shooterTemperatureAndPosition();
