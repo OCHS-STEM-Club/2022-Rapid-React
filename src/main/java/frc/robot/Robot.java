@@ -48,8 +48,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-     //Setsup color match for color senor
-     intakeMotor.setupColor();
   }
 
   /**
@@ -95,7 +93,6 @@ public class Robot extends TimedRobot {
     driveManager.drive();
     //shooterMotor.shooterTemperature();
     intakeMotor.intakeController();
-    intakeMotor.intakeColorSensor();
     driveEncoder.driveMotorPosition();
     //shooterMotor.shooter();
     //shooterMotor.shooterTemperatureAndPosition();
