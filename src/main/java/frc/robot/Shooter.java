@@ -32,7 +32,7 @@ public class Shooter {
 
     public void shooter(){
       if(controller.getRawButton(8)){
-        shooterMotor. set(-0.7);
+        shooterMotor. set(0.8);
       }else if(controller.getRawButton(3)){
         shooterMotor.set(0);
       }
