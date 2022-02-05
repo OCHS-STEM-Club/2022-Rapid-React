@@ -3,8 +3,11 @@ package frc.robot;
 import java.io.Console;
 import java.io.PrintStream;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ColorMatch;
@@ -26,7 +29,7 @@ import edu.wpi.first.wpilibj.util.Color;
 public class Shooter {
   private WPI_TalonFX shooterMotor = new WPI_TalonFX(7);
   private CANSparkMax indexerMotor = new CANSparkMax(10 , MotorType.kBrushless);
-  
+  private VictorSPX hoodMotor = new VictorSPX(11);
 
   private XboxController controller = new XboxController(1);
   // Encoder for shooter motor
@@ -34,8 +37,10 @@ public class Shooter {
   // Single solonoid for cooling shooter motor
   private Solenoid shooterCoolerSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 2); 
 
+  public static PIDController shooterPID =  new PIDController(001,0.001, 5, 1023.0/20660.0,  300,  1.00);
 
-  //Constant that gets compared to the current shooter temperature
+
+  //Constant that gets compares to the current shooter temperature
   private static final double MAX_SHOOT_TEMP = 72;
 
   //Constant that is used in RotationRevolution
@@ -43,11 +48,20 @@ public class Shooter {
 
   private ColorSensorV3 colorSensor;
   // private ColorMatch colorMatcher;
-  
+
+  public void hoodMotor(){
+    if (controller.getRawAxis(2) > 0.8){
+      hoodMotor.set(ControlMode.PercentOutput, 0.1);
+    }else if(controller.getRawAxis(3) > 0.8){
+      hoodMotor.set(ControlMode.PercentOutput, -0.1);
+    }
+
+  }
+
 
     public void shooter(){
       if(controller.getRawButton(8)){
-        shooterMotor. set(0.8);
+        shooterMotor.set(0.8);
       }else if(controller.getRawButton(3)){
         shooterMotor.set(0);
       }
@@ -119,7 +133,6 @@ public class Shooter {
    }
 
     public void getColor() {
-      
       Color detectedColor = colorSensor.getColor();
      
 
@@ -131,17 +144,15 @@ public class Shooter {
 
     public double getRed() {
       Double redDouble = colorSensor.getColor().red;
-    return redDouble;
+      return redDouble;
     }
 
     public double getBlue() {
-     Double blueDouble = colorSensor.getColor().blue;
-    return blueDouble;
-
+      Double blueDouble = colorSensor.getColor().blue;
+      return blueDouble;
     }
     
     public void isBallOurs() {
-
       if ((publishAllianceColor() == "Red") && (getRed() > getBlue())){
         SmartDashboard.putBoolean("Is Ball Ours", true);
       } else if ((publishAllianceColor() == "Blue") && (getBlue() > getRed())){
@@ -151,7 +162,7 @@ public class Shooter {
     }
 
 
+    public void configSelectedFeedbackSensor(TalonFXFeedbackDevice integratedsensor, int i, int j) {
+    }
 
-
-    
   }
