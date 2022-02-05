@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
   Drive driveManager = new Drive();
   //Intake intakeMotor = new Intake();
-  Drive driveEncoder = new Drive();
+  //Drive driveEncoder = new Drive();
   //Shooter shooterMotor = new Shooter();
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
     SmartDashboard.putNumber("Top Speed", 0.5);
+    driveManager.motorSettings();
     
   }
 
@@ -89,7 +90,7 @@ public class Robot extends TimedRobot {
     driveManager.drive();
     //shooterMotor.shooterTemperature();
     //intakeMotor.intakeController();
-    driveEncoder.driveMotorPosition();
+    driveManager.driveMotorPosition();
     //shooterMotor.shooter();
     //shooterMotor.shooterTemperatureAndPosition();
   }
