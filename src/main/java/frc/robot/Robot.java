@@ -90,8 +90,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     driveManager.drive();
     driveEncoder.driveMotorPosition();
-   // shooterMotor.shooter();
-   // shooterMotor.shooterTemperatureAndPosition();
+    shooterMotor.shooter();
+    shooterMotor.shooterTemperatureAndPosition();
     shooterMotor.ColorSensor();
     shooterMotor.getAllianceColor();
     shooterMotor.publishAllianceColor();
