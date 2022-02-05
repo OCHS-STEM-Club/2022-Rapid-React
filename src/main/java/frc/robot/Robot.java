@@ -90,6 +90,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     driveManager.drive();
     driveEncoder.driveMotorPosition();
+    driveManager.driveMotorPosition();
     shooterMotor.shooter();
     shooterMotor.shooterTemperatureAndPosition();
     shooterMotor.ColorSensor();

@@ -1,8 +1,7 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonFX; // Need to test if needed
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -20,7 +19,7 @@ public class Drive {
 
     private XboxController controller = new XboxController(0);
 
-    private double topSpeed = 0.5; //Percent value for drive motor speed from 0 to 1
+    private double topSpeed = 0.25; //Percent value for drive motor speed from 0 to 1
     private double xStickValue; //Variable to store the value from the Xbox Controller
     private double yStickValue; //Variable to store the value from the Xbox Controller
 
@@ -28,13 +27,13 @@ public class Drive {
         driveMotorLeft2.follow(driveMotorLeft1);
         driveMotorRight2.follow(driveMotorRight1);
 
+
+
         //driveMotorRight1.setInverted(true);
         //Number represents the time in seconds it takes for the motors to go from Neutral to Full speed
-       // driveMotorLeft1.configOpenloopRamp(1);
-        //driveMotorRight1.configOpenloopRamp(1);
+       
         //Brakes the motors; can be Coaster
-        //driveMotorLeft1.setNeutralMode(NeutralMode.Brake);
-        //driveMotorRight1.setNeutralMode(NeutralMode.Brake);
+       
 
     }
 
@@ -42,7 +41,8 @@ public class Drive {
      * Main method of driving for Teleop
      */
     public void drive(){
-        topSpeed = SmartDashboard.getNumber("Top Speed", 0.5);
+       topSpeed = SmartDashboard.getNumber("Top Speed", 0.5); 
+       // Allows for change of speed limit on SmartDashboard for testing/demo 
 
         xStickValue = controller.getRawAxis(4) * topSpeed;
         yStickValue = -controller.getRawAxis(1) * topSpeed;
@@ -50,7 +50,7 @@ public class Drive {
 
     }
 
-    public double driveMotorPosition(){
+    public void driveMotorPosition(){
         double driveMotorLeftPosition = driveMotorLeft1.getSelectedSensorPosition(3);
         double driveMotorRightPosition = driveMotorRight1.getSelectedSensorPosition(5);
         
@@ -62,10 +62,19 @@ public class Drive {
 
         SmartDashboard.putNumber("Right motor Encoder", driveMotorRightPosition);
         SmartDashboard.putNumber("Right motor 2 Encoder", driveMotorRightPosition2);
-
-        return driveMotorRightPosition;
         
     }
+
+    public void motorSettings() {
+        driveMotorLeft1.setNeutralMode(NeutralMode.Brake);
+        driveMotorRight1.setNeutralMode(NeutralMode.Brake);
+
+        //driveMotorLeft1.configOpenloopRamp(1);
+        //driveMotorRight1.configOpenloopRamp(1);
+
+    }
+
+   
 
 }
 
