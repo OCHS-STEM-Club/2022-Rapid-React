@@ -6,9 +6,11 @@ import java.io.PrintStream;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.ColorMatch;
 //import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.ColorSensorV3.RawColor;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -17,12 +19,13 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 
 public class Shooter {
   private WPI_TalonFX shooterMotor = new WPI_TalonFX(7);
-
+  private CANSparkMax indexerMotor = new CANSparkMax(10 , MotorType.kBrushless);
   
 
   private XboxController controller = new XboxController(1);
@@ -79,6 +82,14 @@ public class Shooter {
            
     return shooterMotorTemperature;
     }
+
+    public void indexWheel(){
+     if(controller.getPOV() == 0){
+       indexerMotor.set(0.2);
+    }else{indexerMotor.set(0);
+      }
+    }
+
 
     public void ColorSensor() {
 
