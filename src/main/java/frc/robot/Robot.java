@@ -102,7 +102,7 @@ public class Robot extends TimedRobot {
     shooterMotor.getRed();
     shooterMotor.getBlue();
     shooterMotor.isBallOurs();
-    //intakeMotor.intakeController();
+    intakeMotor.intakeController();
 
   }
 
