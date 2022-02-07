@@ -5,6 +5,7 @@ import java.io.PrintStream;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -36,8 +37,10 @@ public class Shooter {
   // Single solonoid for cooling shooter motor
   private Solenoid shooterCoolerSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 2); 
 
+  public static PIDController shooterPID =  new PIDController(001,0.001, 5, 1023.0/20660.0,  300,  1.00);
 
-  //Constant that gets compared to the current shooter temperature
+
+  //Constant that gets compares to the current shooter temperature
   private static final double MAX_SHOOT_TEMP = 72;
 
   //Constant that is used in RotationRevolution
@@ -156,6 +159,10 @@ public class Shooter {
         SmartDashboard.putBoolean("Is Ball Ours", true);
       } else SmartDashboard.putBoolean("Is Ball Ours", false);
 
+    }
+
+
+    public void configSelectedFeedbackSensor(TalonFXFeedbackDevice integratedsensor, int i, int j) {
     }
 
   }
