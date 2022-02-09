@@ -17,9 +17,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-  Drive driveManager = new Drive();
+  //Drive driveManager = new Drive();
   Intake intakeMotor = new Intake();
   Shooter shooterMotor = new Shooter();
+  Indexer indexerMotor = new Indexer();
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -36,7 +37,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     SmartDashboard.putNumber("Top Speed", 0.5);
 
-    shooterMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 30);
+    
+
+    //shooterMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 30);
 
 
     
@@ -95,10 +98,12 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    driveManager.drive();
-    driveManager.driveMotorPosition();
+    //driveManager.drive();
+    //driveManager.driveMotorPosition();
     shooterMotor.shooter();
-    shooterMotor.shooterTemperatureAndPosition();
+    shooterMotor.hoodMotor();
+    indexerMotor.indexWheel();
+    //shooterMotor.shooterTemperatureAndPosition();
     shooterMotor.ColorSensor();
     shooterMotor.getAllianceColor();
     shooterMotor.publishAllianceColor();
