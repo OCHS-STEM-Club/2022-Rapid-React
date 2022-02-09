@@ -101,9 +101,14 @@ public class Robot extends TimedRobot {
     //driveManager.drive();
     //driveManager.driveMotorPosition();
     shooterMotor.shooter();
+<<<<<<< HEAD
     shooterMotor.hoodMotor();
     indexerMotor.indexWheel();
     //shooterMotor.shooterTemperatureAndPosition();
+=======
+    shooterMotor.shooterTemperatureAndPosition();
+    shooterMotor.hoodMotor();
+>>>>>>> 990347c19460b518b94e277d6244b745b97ebe84
     shooterMotor.ColorSensor();
     shooterMotor.getAllianceColor();
     shooterMotor.publishAllianceColor();
@@ -111,7 +116,7 @@ public class Robot extends TimedRobot {
     shooterMotor.getRed();
     shooterMotor.getBlue();
     shooterMotor.isBallOurs();
-    intakeMotor.intakeController();
+    intakeMotor.intakeController(); 
 
   }
 
