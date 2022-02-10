@@ -10,6 +10,16 @@
         "header": {
           "open": true
         }
+      },
+      "Talon FX[5]": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon FX[6]/Integrated Sensor": {
+        "header": {
+          "open": true
+        }
       }
     }
   },
@@ -17,6 +27,9 @@
     "types": {
       "/FMSInfo": "FMSInfo",
       "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
+      "/LiveWindow/Ungrouped/Talon FX [4]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Talon FX [6]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Talon FX [7]": "Motor Controller",
       "/SmartDashboard/Auto choices": "String Chooser"
     }
   }

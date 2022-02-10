@@ -18,6 +18,8 @@ import com.revrobotics.ColorSensorV3;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.ColorSensorV3.RawColor;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -32,7 +34,6 @@ public class Shooter {
   private WPI_TalonFX shooterMotor = new WPI_TalonFX(7);
   //private CANSparkMax indexerMotor = new CANSparkMax(20 , MotorType.kBrushless);
   private VictorSPX hoodMotor = new VictorSPX(11);
-
   private XboxController controller = new XboxController(1);
   // Encoder for shooter motor
   TalonFXConfiguration configs = new TalonFXConfiguration();
@@ -41,6 +42,8 @@ public class Shooter {
 
   public static PIDController shooterPID =  new PIDController(001,0.001, 5, 1023.0/20660.0,  300,  1.00);
 
+  //private AnalogInput input = new AnalogInput(0);
+  //private AnalogPotentiometer hoodPotentiometer = new AnalogPotentiometer(input,180, 30);
 
   //Constant that gets compares to the current shooter temperature
   private static final double MAX_SHOOT_TEMP = 72;
@@ -51,7 +54,7 @@ public class Shooter {
   private ColorSensorV3 colorSensor;
   // private ColorMatch colorMatcher;
 
-  
+
    public void hoodMotor() {
     if (controller.getRawAxis(2) > 0){
       hoodMotor.set(ControlMode.PercentOutput, 0.3);
@@ -61,9 +64,7 @@ public class Shooter {
       hoodMotor.set(ControlMode.PercentOutput, 0);
     }
 
-
   }
-
 
 
     public void shooter(){
