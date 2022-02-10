@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-  //Drive driveManager = new Drive();
+  Drive driveManager = new Drive();
   Intake intakeMotor = new Intake();
   Shooter shooterMotor = new Shooter();
   Indexer indexerMotor = new Indexer();
@@ -98,17 +98,13 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    //driveManager.drive();
-    //driveManager.driveMotorPosition();
+    driveManager.drive();
+    driveManager.driveMotorPosition();
     shooterMotor.shooter();
-<<<<<<< HEAD
     shooterMotor.hoodMotor();
     indexerMotor.indexWheel();
     //shooterMotor.shooterTemperatureAndPosition();
-=======
-    shooterMotor.shooterTemperatureAndPosition();
     shooterMotor.hoodMotor();
->>>>>>> 990347c19460b518b94e277d6244b745b97ebe84
     shooterMotor.ColorSensor();
     shooterMotor.getAllianceColor();
     shooterMotor.publishAllianceColor();

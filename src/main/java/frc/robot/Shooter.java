@@ -108,16 +108,7 @@ public class Shooter {
     return shooterMotorTemperature;
     }
     */
-    
-/*
-    public void indexWheel(){
-     if(controller.getRawButton(4)){
-       indexerMotor.set(0.2);
-    }else{
-      indexerMotor.set(0);
-      }
-    }
-*/
+
     
 
 
