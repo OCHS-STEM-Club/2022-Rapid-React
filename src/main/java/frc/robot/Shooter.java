@@ -67,6 +67,14 @@ public class Shooter {
 
   }
 
+    public void shooterAuto(){
+      shooterMotor.set(0.8);
+    }
+
+    public void shooterAutoStop(){
+      shooterMotor.set(0);
+    }
+
 
     public void shooter(){
       if(controller.getRawButton(8)){

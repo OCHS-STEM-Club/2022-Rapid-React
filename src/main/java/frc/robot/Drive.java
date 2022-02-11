@@ -80,6 +80,9 @@ public class Drive {
 
     }
 
+    public void arcadeDrive(double d, int i) {
+    }
+
    
 
 }
