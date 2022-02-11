@@ -4,12 +4,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.Timer;
-<<<<<<< HEAD
-=======
-//import frc.robot.Drive;
-//import frc.robot.Shooter;
-//import frc.robot.Indexer;
->>>>>>> 17dc1ce7e1cf00037588f9faa53206c59149ec67
 
 public class Autonomous {
    
