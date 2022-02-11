@@ -19,7 +19,7 @@ public class Drive {
 
     private XboxController controller = new XboxController(0);
 
-    private double topSpeed = 0.5; //Percent value for drive motor speed from 0 to 1
+    private double topSpeed = 0.25; //Percent value for drive motor speed from 0 to 1
     private double xStickValue; //Variable to store the value from the Xbox Controller
     private double yStickValue; //Variable to store the value from the Xbox Controller
 
@@ -41,7 +41,7 @@ public class Drive {
      * Main method of driving for Teleop
      */
     public void drive(){
-       topSpeed = SmartDashboard.getNumber("Top Speed", 0.5); 
+       topSpeed = SmartDashboard.getNumber("Top Speed", 0.25); 
        // Allows for change of speed limit on SmartDashboard for testing/demo 
 
         xStickValue = controller.getRawAxis(4) * topSpeed;

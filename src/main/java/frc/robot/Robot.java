@@ -21,6 +21,7 @@ public class Robot extends TimedRobot {
   Intake intakeMotor = new Intake();
   Shooter shooterMotor = new Shooter();
   Indexer indexerMotor = new Indexer();
+  Potentiometer shooterPotentiometer = new Potentiometer();
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -36,6 +37,8 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
     SmartDashboard.putNumber("Top Speed", 0.5);
+
+
 
     
 
@@ -102,8 +105,9 @@ public class Robot extends TimedRobot {
     driveManager.driveMotorPosition();
     shooterMotor.shooter();
     shooterMotor.hoodMotor();
+    shooterPotentiometer.hoodPotentiometer();
     indexerMotor.indexWheel();
-    //shooterMotor.shooterTemperatureAndPosition();
+    shooterMotor.shooterTemperatureAndPosition();
     shooterMotor.hoodMotor();
     shooterMotor.ColorSensor();
     shooterMotor.getAllianceColor();

@@ -18,8 +18,7 @@ import com.revrobotics.ColorSensorV3;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.ColorSensorV3.RawColor;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -32,19 +31,21 @@ import edu.wpi.first.wpilibj.util.Color;
 
 public class Shooter {
   private WPI_TalonFX shooterMotor = new WPI_TalonFX(7);
-  //private CANSparkMax indexerMotor = new CANSparkMax(20 , MotorType.kBrushless);
   private VictorSPX hoodMotor = new VictorSPX(11);
   private XboxController controller = new XboxController(1);
   // Encoder for shooter motor
   TalonFXConfiguration configs = new TalonFXConfiguration();
+
+ 
+
   // Single solonoid for cooling shooter motor
   //private Solenoid shooterCoolerSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 2); 
 
   public static PIDController shooterPID =  new PIDController(001,0.001, 5, 1023.0/20660.0,  300,  1.00);
 
-  //private AnalogInput input = new AnalogInput(0);
-  //private AnalogPotentiometer hoodPotentiometer = new AnalogPotentiometer(input,180, 30);
-
+ 
+  
+  
   //Constant that gets compares to the current shooter temperature
   private static final double MAX_SHOOT_TEMP = 72;
 
@@ -85,7 +86,7 @@ public class Shooter {
     *temperature, and if it is heigher than the constant, then fire solonoids.
     */
    
-    /*
+    
     public double shooterTemperatureAndPosition() {
 
       double shooterMotorPosition = shooterMotor.getSelectedSensorPosition();
@@ -93,11 +94,11 @@ public class Shooter {
       double shooterMotorVelocity = -shooterMotor.getSelectedSensorVelocity();
       //Only to show RPM on smart dashboard
       SmartDashboard.putNumber("Shooter Velocity in RPM" , shooterMotorVelocity/2048 * 600);
-
+      
       double shooterMotorTemperature = shooterMotor.getTemperature() * 1.8 + 32;
       SmartDashboard.putNumber("Shooter Temperature", shooterMotorTemperature);
-
-     //start of temperature check 
+/*
+      start of temperature check 
       if (controller.getRawButton(1) || shooterMotorTemperature >= MAX_SHOOT_TEMP){
       shooterCoolerSolenoid.set(true);
       System.out.print(shooterMotorTemperature);
@@ -105,10 +106,11 @@ public class Shooter {
       shooterCoolerSolenoid.set(false);
       }
       SmartDashboard.putData("Solenoid Cooler Status", shooterCoolerSolenoid);
-           
-    return shooterMotorTemperature;
-    }
     */
+    return shooterMotorPosition;
+    }
+    
+    
 
     
 
