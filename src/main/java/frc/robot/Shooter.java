@@ -1,8 +1,5 @@
 package frc.robot;
 
-import java.io.Console;
-import java.io.PrintStream;
-
 import javax.lang.model.util.ElementScanner6;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -109,11 +106,6 @@ public class Shooter {
     */
     return shooterMotorPosition;
     }
-    
-    
-
-    
-
 
     public void ColorSensor() {
 

@@ -65,7 +65,7 @@ public class Drive {
         SmartDashboard.putNumber("Right motor Encoder", driveMotorRightPosition);
         SmartDashboard.putNumber("Right motor 2 Encoder", driveMotorRightPosition2);
 
-        double getAverageDistance = (driveMotorLeftPosition + driveMotorRightPosition) / 2;
+        //double getAverageDistance = (driveMotorLeftPosition + driveMotorRightPosition) / 2;
 
         
         

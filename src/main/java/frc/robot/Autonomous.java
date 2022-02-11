@@ -4,9 +4,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.Timer;
-import frc.robot.Drive;
-import frc.robot.Shooter;
-import frc.robot.Indexer;
 
 public class Autonomous {
    
@@ -39,13 +36,8 @@ public class Autonomous {
             indexWheel.set(0);
         // if encoders are greater than 10, or if the time is greater than 13 seconds stop motors 
 
-        } else;
-        
-
-        
-       
-        }
-
-   
+        } else {}
+    
+    }
 
 }

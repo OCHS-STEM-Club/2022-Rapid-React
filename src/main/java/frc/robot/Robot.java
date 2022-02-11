@@ -42,16 +42,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     SmartDashboard.putNumber("Top Speed", 0.5);
 
-
-
-    
-
     //shooterMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 30);
-
-
-    
-   
-    
   }
 
   /**
