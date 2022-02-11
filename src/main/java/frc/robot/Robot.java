@@ -5,6 +5,7 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -24,6 +25,7 @@ public class Robot extends TimedRobot {
   Autonomous autoCode = new Autonomous();
   Potentiometer shooterPotentiometer = new Potentiometer();
   Autonomous autonomous = new Autonomous();
+  private AHRS navx = new AHRS();
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -75,6 +77,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    navx.zeroYaw();
+      //resets the encoders of the drivemotors 
+
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
@@ -99,8 +104,9 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    
-  }
+  navx.zeroYaw();
+  //resets the encoders of the drivemotors 
+ }
 
   /** This function is called periodically during operator control. */
   @Override
