@@ -22,6 +22,7 @@ public class Robot extends TimedRobot {
   Shooter shooterMotor = new Shooter();
   Indexer indexerMotor = new Indexer();
   Potentiometer shooterPotentiometer = new Potentiometer();
+  Autonomous autonomous = new Autonomous();
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -84,6 +85,8 @@ public class Robot extends TimedRobot {
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
+
+
         break;
       case kDefaultAuto:
       default:
@@ -102,7 +105,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveManager.drive();
-    driveManager.driveMotorPosition();
+    driveManager.encoders();
     shooterMotor.shooter();
     shooterMotor.hoodMotor();
     shooterPotentiometer.hoodPotentiometer();
