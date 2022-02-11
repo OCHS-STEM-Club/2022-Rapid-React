@@ -21,6 +21,7 @@ public class Robot extends TimedRobot {
   Intake intakeMotor = new Intake();
   Shooter shooterMotor = new Shooter();
   Indexer indexerMotor = new Indexer();
+  Autonomous autoCode = new Autonomous();
   Potentiometer shooterPotentiometer = new Potentiometer();
   Autonomous autonomous = new Autonomous();
   private static final String kDefaultAuto = "Default";
@@ -90,8 +91,8 @@ public class Robot extends TimedRobot {
         break;
       case kDefaultAuto:
       default:
-        // Put default auto code here
-        break;
+      autoCode.autonomous();
+      break;
     }
   }
 
