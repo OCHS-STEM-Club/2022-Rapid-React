@@ -1,5 +1,7 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Timer;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -7,7 +9,6 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.Timer;
 
 
 
@@ -17,18 +18,21 @@ public class Autonomous {
 
     Indexer indexerMotor;
     Shooter shooterMotor;
+    Timer timer = new Timer();
    
     public Autonomous( Indexer i  , Shooter s ){
         indexerMotor = i;
         shooterMotor = s;
     }
 
-    Timer timer = new Timer();
+
+    public void timer() {
+        timer.reset();
+        timer.start();
+    }
     
 
     public void autonomous() {
-        timer.reset();
-        timer.start();
 
         if (timer.get() < 3.0) {
             indexerMotor.indexAuto(-0.3);

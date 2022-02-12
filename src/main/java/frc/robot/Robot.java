@@ -7,7 +7,6 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,6 +28,7 @@ public class Robot extends TimedRobot {
   Potentiometer shooterPotentiometer = new Potentiometer();
   Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor);
   
+  
   private AHRS navx = new AHRS();
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
@@ -44,7 +44,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
@@ -76,8 +75,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    autonomous.timer();
 
-    autonomous.autonomous();
+
+    
     //navx.zeroYaw();
       //resets the encoders of the drivemotors 
 
@@ -97,7 +98,7 @@ public class Robot extends TimedRobot {
         break;
       case kDefaultAuto:
       default:
-      
+      autonomous.autonomous();
       break;
     }
   }

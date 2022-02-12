@@ -18,8 +18,6 @@ import com.revrobotics.ColorSensorV3.RawColor;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-//import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -35,16 +33,9 @@ public class Shooter {
 
  
 
-  // Single solonoid for cooling shooter motor
-  //private Solenoid shooterCoolerSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 2); 
 
-  public static PIDController shooterPID =  new PIDController(001,0.001, 5, 1023.0/20660.0,  300,  1.00);
-
- 
-  
   
   //Constant that gets compares to the current shooter temperature
-  private static final double MAX_SHOOT_TEMP = 72;
 
   //Constant that is used in RotationRevolution
   final int UNITPERREV = 2048; 
@@ -63,8 +54,6 @@ public class Shooter {
     }
 
   }
-
-
 
     public void shooter(){
       if(controller.getRawButton(8)){
@@ -95,16 +84,8 @@ public class Shooter {
       
       double shooterMotorTemperature = shooterMotor.getTemperature() * 1.8 + 32;
       SmartDashboard.putNumber("Shooter Temperature", shooterMotorTemperature);
-/*
-      start of temperature check 
-      if (controller.getRawButton(1) || shooterMotorTemperature >= MAX_SHOOT_TEMP){
-      shooterCoolerSolenoid.set(true);
-      System.out.print(shooterMotorTemperature);
-      } else { 
-      shooterCoolerSolenoid.set(false);
-      }
-      SmartDashboard.putData("Solenoid Cooler Status", shooterCoolerSolenoid);
-    */
+
+      
     return shooterMotorPosition;
     }
 
