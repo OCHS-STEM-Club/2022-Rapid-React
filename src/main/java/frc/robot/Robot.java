@@ -99,6 +99,7 @@ public class Robot extends TimedRobot {
       case kDefaultAuto:
       default:
       autonomous.autonomous();
+      
       break;
     }
   }

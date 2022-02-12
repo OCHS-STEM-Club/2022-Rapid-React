@@ -21,9 +21,7 @@ public void indexWheel(){
 public void indexAuto(double x){
   indexerMotor.set(x);
 }
-public void indexStop(){
-  indexerMotor.set(0);
-}
+
 }
 
 

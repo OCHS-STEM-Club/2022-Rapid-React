@@ -149,4 +149,7 @@ public class Shooter {
     public void configSelectedFeedbackSensor(TalonFXFeedbackDevice integratedsensor, int i, int j) {
     }
 
+    public void shooterAuto(double x){
+        shooterMotor.set(x);
+    }
   }
