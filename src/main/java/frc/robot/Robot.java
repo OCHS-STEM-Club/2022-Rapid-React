@@ -5,11 +5,15 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMax;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -23,13 +27,17 @@ public class Robot extends TimedRobot {
   Shooter shooterMotor = new Shooter();
   Indexer indexerMotor = new Indexer();
   Potentiometer shooterPotentiometer = new Potentiometer();
-  Autonomous autonomous = new Autonomous();
+  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor);
+  
   private AHRS navx = new AHRS();
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  
+
+  
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -68,6 +76,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+
     autonomous.autonomous();
     //navx.zeroYaw();
       //resets the encoders of the drivemotors 

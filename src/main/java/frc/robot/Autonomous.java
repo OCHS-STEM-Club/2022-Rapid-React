@@ -9,21 +9,31 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.Timer;
 
+
+
+
+
 public class Autonomous {
 
-    private WPI_TalonFX shooterMotor = new WPI_TalonFX(7);
-    private CANSparkMax indexerMotor = new CANSparkMax(20 , MotorType.kBrushless);
+    Indexer indexerMotor;
+    Shooter shooterMotor;
+   
+    public Autonomous( Indexer i  , Shooter s ){
+        indexerMotor = i;
+        shooterMotor = s;
+    }
 
     Timer timer = new Timer();
+    
 
     public void autonomous() {
         timer.reset();
         timer.start();
 
-        if (timer.get() < 3) {
-            indexerMotor.set(0.3);
-        } else if (timer.get() > 3 && timer.get() < 5){
-            indexerMotor.set(0);
+        if (timer.get() < 3.0) {
+            indexerMotor.indexAuto(-0.3);
+        } else {
+            indexerMotor.indexAuto(0);
         }
         /* if time is less than 3 seconds, start motor
 

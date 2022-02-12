@@ -18,10 +18,12 @@ public void indexWheel(){
      indexerMotor.set(0);
      }
    }
-public void indexAuto(){
-  indexerMotor.set(-0.3);
+public void indexAuto(double x){
+  indexerMotor.set(x);
 }
-   
+public void indexStop(){
+  indexerMotor.set(0);
+}
 }
 
 
