@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
@@ -25,8 +26,9 @@ public class Robot extends TimedRobot {
   Intake intakeMotor = new Intake();
   Shooter shooterMotor = new Shooter();
   Indexer indexerMotor = new Indexer();
+  Climber climber = new Climber();
   Potentiometer shooterPotentiometer = new Potentiometer();
-  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor);
+  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, driveManager);
   
   
   private AHRS navx = new AHRS();
@@ -48,6 +50,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
     SmartDashboard.putNumber("Top Speed", 0.5);
+    driveManager.motorSettings();
 
     //shooterMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 30);
   }
@@ -93,11 +96,12 @@ public class Robot extends TimedRobot {
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
-        
+      
 
         break;
       case kDefaultAuto:
       default:
+      
       autonomous.autonomous();
       
       break;
@@ -130,6 +134,7 @@ public class Robot extends TimedRobot {
     shooterMotor.getBlue();
     shooterMotor.isBallOurs();
     intakeMotor.intakeController(); 
+    climber.climberControl();
 
   }
 

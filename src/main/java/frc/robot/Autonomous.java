@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj.Timer;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+
+import java.sql.DriverManager;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
@@ -20,12 +23,24 @@ public class Autonomous {
     Indexer indexerMotor;
     Shooter shooterMotor;
     Timer timer = new Timer();
+    Drive driveManager;
+
+
+
+    double getAverageDistance;
    
-    public Autonomous( Indexer i  , Shooter s ){
+    public Autonomous( Indexer i  , Shooter s, Drive a){
         indexerMotor = i;
-        shooterMotor = s;
+        shooterMotor = s;   
+        driveManager = a;
+
+    }
+    /*DifferentialDrive differentialDrive = driveManager.differentialDrive;
+    public void averageDistance(double a) {
+         getAverageDistance = driveManager.encoders();
     }
 
+*/
 
     public void timer() {
         timer.reset();
@@ -41,25 +56,27 @@ public class Autonomous {
         
         }
         // if time is less than 3 seconds, start motor
-
          else if (timer.get() > 3 && timer.get() < 5) {
             indexerMotor.indexAuto(-0.75);
         // if time is greater than 3 seconds and less than 5 seconds, start index wheel
-            
-        /*
-        } else if (getAverageDistance < 10 && timer.get() > 10) {
+         }else if (timer.get()> 6){
+             shooterMotor.shooterAuto(0);
+             indexerMotor.indexAuto(0);
+         
+        
+        /*} else if (getAverageDistance < 10 && timer.get() > 10) {
             differentialDrive.arcadeDrive(0.5, 0);
         // if encoders are less than 10 and time is greater than 10 seconds, move at 50% speed forward
 
-        } else if ( > 10) {
+        } else if (getAverageDistance > 10 && timer.get() > 13) {
             differentialDrive.arcadeDrive(0, 0);
-            shooterMotor.shooterAuto(x);
-            indexerMotor.indexAuto(x);
+            shooterMotor.shooterAuto(0);
+            indexerMotor.indexAuto(0);
         // if encoders are greater than 10, stop motors
 
        // } else;
 
-            */
+        */
 
         }
      }
