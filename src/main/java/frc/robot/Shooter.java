@@ -56,15 +56,18 @@ public class Shooter {
   }
 
     public void shooter(){
+
+      //shooterMotor.set(controller.getRawAxis(1));
       if(controller.getRawButton(8)){
         shooterMotor.set(0.8);
       }else if(controller.getRawButton(3)){
         shooterMotor.set(0);
       }
-
-      shooterMotor.setNeutralMode(NeutralMode.Coast);
-        // Spins motor
     }
+
+      //shooterMotor.setNeutralMode(NeutralMode.Coast);
+        // Spins motor
+    
     
 
     /*
