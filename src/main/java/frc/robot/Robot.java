@@ -36,6 +36,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
@@ -67,7 +68,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    navx.zeroYaw();
+    autonomous.autonomous();
+    //navx.zeroYaw();
       //resets the encoders of the drivemotors 
 
     m_autoSelected = m_chooser.getSelected();
@@ -81,12 +83,12 @@ public class Robot extends TimedRobot {
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
-
+        
 
         break;
       case kDefaultAuto:
       default:
-      autonomous.autonomous();
+      
       break;
     }
   }
@@ -94,7 +96,7 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-  navx.zeroYaw();
+  //navx.zeroYaw();
   //resets the encoders of the drivemotors 
  }
 
