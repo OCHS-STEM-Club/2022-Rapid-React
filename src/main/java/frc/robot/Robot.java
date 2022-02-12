@@ -22,7 +22,6 @@ public class Robot extends TimedRobot {
   Intake intakeMotor = new Intake();
   Shooter shooterMotor = new Shooter();
   Indexer indexerMotor = new Indexer();
-  Autonomous autoCode = new Autonomous();
   Potentiometer shooterPotentiometer = new Potentiometer();
   Autonomous autonomous = new Autonomous();
   private AHRS navx = new AHRS();
@@ -87,7 +86,7 @@ public class Robot extends TimedRobot {
         break;
       case kDefaultAuto:
       default:
-      autoCode.autonomous();
+      autonomous.autonomous();
       break;
     }
   }
