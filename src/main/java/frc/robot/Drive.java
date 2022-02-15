@@ -69,8 +69,8 @@ public class Drive {
         driveMotorLeft1.setNeutralMode(NeutralMode.Brake);
         driveMotorRight1.setNeutralMode(NeutralMode.Brake);
 
-        //driveMotorLeft1.configOpenloopRamp(1);
-        //driveMotorRight1.configOpenloopRamp(1);
+        driveMotorLeft1.configOpenloopRamp(0.5);
+        driveMotorRight1.configOpenloopRamp(0.5);
 
     }
 
