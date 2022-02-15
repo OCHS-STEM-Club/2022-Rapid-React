@@ -18,21 +18,33 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 
+
+
 public class Autonomous {
 
     Indexer indexerMotor;
     Shooter shooterMotor;
     Timer timer = new Timer();
-    Drive driveManager;
+    Drive driveMotorLeft1;
+    Drive driveMotorRight1;
+    Drive differentialDrive;
 
 
+    public double driveMotorLeftPosition = driveMotorLeft1.getSelectedSensorPosition(3);
+    public double driveMotorRightPosition = driveMotorRight1.getSelectedSensorPosition(5);
 
-    double getAverageDistance;
+    public double getAverageDistance = (driveMotorLeftPosition + driveMotorRightPosition) /2;
+
+
    
-    public Autonomous( Indexer i  , Shooter s, Drive a){
+   
+    public Autonomous( Indexer i , Shooter s, Drive l, Drive r, Drive d){
         indexerMotor = i;
-        shooterMotor = s;   
-        driveManager = a;
+        shooterMotor = s; 
+        driveMotorLeft1 = l;
+        driveMotorRight1 = r;
+        differentialDrive = d;
+
 
     }
     /*DifferentialDrive differentialDrive = driveManager.differentialDrive;
@@ -62,10 +74,10 @@ public class Autonomous {
          }else if (timer.get()> 6){
              shooterMotor.shooterAuto(0);
              indexerMotor.indexAuto(0);
-         
-        
-        /*} else if (getAverageDistance < 10 && timer.get() > 10) {
-            differentialDrive.arcadeDrive(0.5, 0);
+
+             /*
+         } else if (getAverageDistance > 0.0 && timer.get() > 10) {
+            differentialDrive.arcadeDrive(0.5, 0, false);
         // if encoders are less than 10 and time is greater than 10 seconds, move at 50% speed forward
 
         } else if (getAverageDistance > 10 && timer.get() > 13) {

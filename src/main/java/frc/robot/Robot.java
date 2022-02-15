@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
   Indexer indexerMotor = new Indexer();
   Climber climber = new Climber();
   Potentiometer shooterPotentiometer = new Potentiometer();
-  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, driveManager);
+  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, driveManager, driveManager, driveManager);
   
   
   private AHRS navx = new AHRS();
@@ -119,7 +119,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveManager.drive();
-    driveManager.encoders();
+    //driveManager.encoders();
     shooterMotor.shooter();
     shooterMotor.hoodMotor();
     shooterPotentiometer.hoodPotentiometer();

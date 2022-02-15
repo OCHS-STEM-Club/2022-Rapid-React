@@ -19,6 +19,14 @@ public class Drive {
 
     private XboxController controller = new XboxController(0);
 
+    public double driveMotorLeftPosition = driveMotorLeft1.getSelectedSensorPosition(3);
+    public double driveMotorRightPosition = driveMotorRight1.getSelectedSensorPosition(5);
+        
+    public double driveMotorLeftPosition2 = driveMotorLeft2.getSelectedSensorPosition(4);
+    public double driveMotorRightPosition2 = driveMotorRight2.getSelectedSensorPosition(6);
+
+    //public double getAverageDistance = (driveMotorLeftPosition + driveMotorRightPosition) /2;
+
     private double topSpeed = 0.25; //Percent value for drive motor speed from 0 to 1
     private double xStickValue; //Variable to store the value from the Xbox Controller
     private double yStickValue; //Variable to store the value from the Xbox Controller
@@ -41,8 +49,8 @@ public class Drive {
         differentialDrive.arcadeDrive(xStickValue, yStickValue, false);
 
     }
-
-    public double encoders(){
+/*
+    public void encoders(){
     
         double driveMotorLeftPosition = driveMotorLeft1.getSelectedSensorPosition(3);
         double driveMotorRightPosition = driveMotorRight1.getSelectedSensorPosition(5);
@@ -58,20 +66,22 @@ public class Drive {
 
         double getAverageDistance = (driveMotorLeftPosition + driveMotorRightPosition) /2;
 
-        return getAverageDistance;
-
     }
-
+*/
 
 
     public void motorSettings() {
         driveMotorLeft1.setNeutralMode(NeutralMode.Brake);
         driveMotorRight1.setNeutralMode(NeutralMode.Brake);
  
-        driveMotorLeft1.configOpenloopRamp(0.5);
-        driveMotorRight1.configOpenloopRamp(0.5);
+        driveMotorLeft1.configOpenloopRamp(0.75);
+        driveMotorRight1.configOpenloopRamp(0.75);
 
 
+    }
+
+    public double getSelectedSensorPosition(int i) {
+        return 0;
     }
 
 
