@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -28,7 +29,7 @@ public class Robot extends TimedRobot {
   Indexer indexerMotor = new Indexer();
   Climber climber = new Climber();
   Potentiometer shooterPotentiometer = new Potentiometer();
-  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, driveManager, driveManager, driveManager);
+  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor);
   
   
   private AHRS navx = new AHRS();
@@ -78,12 +79,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    autonomous.timer();
+   navx.zeroYaw();
+      //resets the encoders of the drivemotors 
+   autonomous.timer();
 
 
     
-    //navx.zeroYaw();
-      //resets the encoders of the drivemotors 
+    
 
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
