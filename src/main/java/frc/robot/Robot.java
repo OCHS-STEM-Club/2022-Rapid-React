@@ -29,10 +29,10 @@ public class Robot extends TimedRobot {
   Indexer indexerMotor = new Indexer();
   Climber climber = new Climber();
   Potentiometer shooterPotentiometer = new Potentiometer();
-  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor);
+ // Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor);
   
   
-  private AHRS navx = new AHRS();
+  //private AHRS navx = new AHRS();
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -79,9 +79,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-   navx.zeroYaw();
+   //navx.zeroYaw();
       //resets the encoders of the drivemotors 
-   autonomous.timer();
+   //autonomous.timer();
 
 
     
@@ -104,7 +104,7 @@ public class Robot extends TimedRobot {
       case kDefaultAuto:
       default:
       
-      autonomous.autonomous();
+     // autonomous.autonomous();
       
       break;
     }
