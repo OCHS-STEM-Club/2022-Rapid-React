@@ -94,7 +94,7 @@ public class Shooter {
 
     public void ColorSensor() {
 
-      I2C.Port i2cPort = I2C.Port.kOnboard;
+      I2C.Port i2cPort = I2C.Port.kMXP;
       colorSensor = new ColorSensorV3(i2cPort);
       //colorMatcher = new ColorMatch();
     }
