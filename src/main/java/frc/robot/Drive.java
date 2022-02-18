@@ -25,9 +25,9 @@ public class Drive {
     public double driveMotorLeftPosition2 = driveMotorLeft2.getSelectedSensorPosition(4);
     public double driveMotorRightPosition2 = driveMotorRight2.getSelectedSensorPosition(6);
 
-    //public double getAverageDistance = (driveMotorLeftPosition + driveMotorRightPosition) /2;
+    public double getAverageDistance = (driveMotorLeftPosition + driveMotorRightPosition) /2;
 
-    private double topSpeed = 0.25; //Percent value for drive motor speed from 0 to 1
+    private double topSpeed = 0.5; //Percent value for drive motor speed from 0 to 1
     private double xStickValue; //Variable to store the value from the Xbox Controller
     private double yStickValue; //Variable to store the value from the Xbox Controller
 
@@ -41,7 +41,7 @@ public class Drive {
      * Main method of driving for Teleop
      */
     public void drive(){
-       topSpeed = SmartDashboard.getNumber("Top Speed", 0.25); 
+       topSpeed = SmartDashboard.getNumber("Top Speed", 0.5); 
        // Allows for change of speed limit on SmartDashboard for testing/demo 
 
         xStickValue = controller.getRawAxis(4) * topSpeed;
@@ -76,15 +76,15 @@ public class Drive {
  
         driveMotorLeft1.configOpenloopRamp(0.75);
         driveMotorRight1.configOpenloopRamp(0.75);
-
-
     }
 
-    public double getSelectedSensorPosition(int i) {
-        return 0;
+    public void auto(double x, double y) {
+        differentialDrive.arcadeDrive(x ,y , false);
     }
-
 
 }
+
+
+
 
 

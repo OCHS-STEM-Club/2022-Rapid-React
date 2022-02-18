@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
   Indexer indexerMotor = new Indexer();
   Climber climber = new Climber();
   Potentiometer shooterPotentiometer = new Potentiometer();
- // Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor);
+  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, driveManager);
   
   
   //private AHRS navx = new AHRS();
@@ -81,7 +81,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
    //navx.zeroYaw();
       //resets the encoders of the drivemotors 
-   //autonomous.timer();
+  autonomous.timer();
 
 
     
@@ -104,7 +104,7 @@ public class Robot extends TimedRobot {
       case kDefaultAuto:
       default:
       
-     // autonomous.autonomous();
+     autonomous.autonomous();
       
       break;
     }
