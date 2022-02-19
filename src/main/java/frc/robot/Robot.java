@@ -4,17 +4,12 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.CANSparkMax;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -121,12 +116,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveManager.drive();
-    //driveManager.encoders();
+    driveManager.creep();
+
     shooterMotor.shooter();
-    shooterPotentiometer.hoodPotentiometer();
-    indexerMotor.indexWheel();
     shooterMotor.shooterTemperatureAndPosition();
-    //shooterMotor.hoodMotor();
     shooterMotor.ColorSensor();
     shooterMotor.getAllianceColor();
     shooterMotor.publishAllianceColor();
@@ -134,11 +127,16 @@ public class Robot extends TimedRobot {
     shooterMotor.getRed();
     shooterMotor.getBlue();
     shooterMotor.isBallOurs();
+    
+    indexerMotor.indexWheel();
+    
     intakeMotor.intakeController(); 
+    
     climber.climberControl();
+    
     shooterPotentiometer.hoodMotor();
     shooterPotentiometer.setHood();
-
+    shooterPotentiometer.hoodPotentiometer();
   }
 
   /** This function is called once when the robot is disabled. */

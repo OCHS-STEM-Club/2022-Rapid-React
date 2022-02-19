@@ -28,6 +28,7 @@ public class Drive {
     public double getAverageDistance = (driveMotorLeftPosition + driveMotorRightPosition) /2;
 
     private double topSpeed = 0.5; //Percent value for drive motor speed from 0 to 1
+    private double creepSpeed = 1;
     private double xStickValue; //Variable to store the value from the Xbox Controller
     private double yStickValue; //Variable to store the value from the Xbox Controller
 
@@ -44,31 +45,19 @@ public class Drive {
        topSpeed = SmartDashboard.getNumber("Top Speed", 0.5); 
        // Allows for change of speed limit on SmartDashboard for testing/demo 
 
-        xStickValue = controller.getRawAxis(4) * topSpeed;
-        yStickValue = controller.getRawAxis(1) * topSpeed;
+        xStickValue = controller.getRawAxis(4) * topSpeed * creepSpeed;
+        yStickValue = controller.getRawAxis(1) * topSpeed * creepSpeed;
         differentialDrive.arcadeDrive(xStickValue, yStickValue, false);
 
     }
-/*
-    public void encoders(){
-    
-        double driveMotorLeftPosition = driveMotorLeft1.getSelectedSensorPosition(3);
-        double driveMotorRightPosition = driveMotorRight1.getSelectedSensorPosition(5);
-        
-        double driveMotorLeftPosition2 = driveMotorLeft2.getSelectedSensorPosition(4);
-        double driveMotorRightPosition2 = driveMotorRight2.getSelectedSensorPosition(6);
 
-        SmartDashboard.putNumber("Left motor Encoder", driveMotorLeftPosition);
-        SmartDashboard.putNumber("Left motor 2 Encoder", driveMotorLeftPosition2);
-
-        SmartDashboard.putNumber("Right motor Encoder", driveMotorRightPosition);
-        SmartDashboard.putNumber("Right motor 2 Encoder", driveMotorRightPosition2);
-
-        double getAverageDistance = (driveMotorLeftPosition + driveMotorRightPosition) /2;
-
+    public void creep(){
+        if(controller.getRawAxis(2) == 1){
+            creepSpeed = 0.5;
+        } else {
+            creepSpeed = 1;
+        }
     }
-*/
-
 
     public void motorSettings() {
         driveMotorLeft1.setNeutralMode(NeutralMode.Brake);

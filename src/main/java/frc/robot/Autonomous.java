@@ -1,7 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Timer;
-
+/*
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 
@@ -13,6 +13,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+*/
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -48,7 +49,7 @@ public class Autonomous{
        
 
         if (timer.get() < 2.0) {
-            shooterMotor.shooterAuto(0.65);
+            shooterMotor.shooterAuto(0.64);
             // start shooter motor
         } else if (timer.get() > 2 && timer.get() < 4) {
             indexerMotor.indexAuto(-0.75);
@@ -67,10 +68,10 @@ public class Autonomous{
         // continue moving backwards to intake ball
         } else if (timer.get() > 7 && timer.get() < 9 ) {
             driveManager.auto(0, 0); 
-            shooterMotor.shooterAuto(0.8);
         // start shooter
         } else if (timer.get() > 9 && timer.get() < 11 ) {
             driveManager.auto(0, 0.3);
+            shooterMotor.shooterAuto(0.71);
         // move back to starting point
         }else if (timer.get() > 11 && timer.get() < 13 ) {
             indexerMotor.indexAuto(0);

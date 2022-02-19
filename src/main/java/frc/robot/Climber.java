@@ -8,23 +8,22 @@ import edu.wpi.first.wpilibj.XboxController;
 public class Climber {
     
     private XboxController controller = new XboxController(1);
-    private DoubleSolenoid climberSolonoid = new DoubleSolenoid(13,PneumaticsModuleType.REVPH, 0,1);
-    private DoubleSolenoid climberSolonoid2 = new DoubleSolenoid(13,PneumaticsModuleType.REVPH, 2,3); 
+    private DoubleSolenoid climberSolenoid = new DoubleSolenoid(13,PneumaticsModuleType.REVPH, 0,1);
+    private DoubleSolenoid climberSolenoid2 = new DoubleSolenoid(13,PneumaticsModuleType.REVPH, 2,3); 
     public void setSpeedSoleniod(DoubleSolenoid climberSoleniod) {
-        this.climberSolonoid = climberSoleniod;
+        this.climberSolenoid = climberSoleniod;
     }
 
     public void climberControl(){
         if(controller.getRawButton(1)){
-            climberSolonoid.set(Value.kReverse);
-            climberSolonoid2.set(Value.kReverse);
+            climberSolenoid.set(Value.kReverse);
+            climberSolenoid2.set(Value.kReverse);
         }else if(controller.getRawButton(2)){
-            climberSolonoid.set(Value.kForward);
-            climberSolonoid2.set(Value.kForward);
+            climberSolenoid.set(Value.kForward);
+            climberSolenoid2.set(Value.kForward);
         }
-        
-        else {climberSolonoid.set(Value.kOff);
-               climberSolonoid2.set(Value.kOff);} 
-    
-}
+        else {climberSolenoid.set(Value.kOff);
+              climberSolenoid2.set(Value.kOff);} 
+    }
+
 }

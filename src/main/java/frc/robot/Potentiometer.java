@@ -13,12 +13,11 @@ public class Potentiometer {
     private AnalogPotentiometer hoodPotentiometer = new AnalogPotentiometer(input);
     private VictorSPX hoodMotor = new VictorSPX(11);
     private XboxController controller = new XboxController(1);
-    public double angle = hoodPotentiometer.get();
+    //public double angle = hoodPotentiometer.get();
 
     public void hoodPotentiometer(){
         input.setAverageBits(2);
-        //double angle = hoodPotentiometer.get();
-        SmartDashboard.putNumber("Hood Angle", angle);
+        SmartDashboard.putNumber("Hood Angle", hoodPotentiometer.get());
       }
 
       public void hoodMotor() {
@@ -32,12 +31,15 @@ public class Potentiometer {
       }
 
       public void setHood() {
-        if (controller.getRawButton(4)) {
+        if (controller.getRawButton(4) && hoodPotentiometer.get() < 0.5) {
+          hoodMotor.set(ControlMode.PercentOutput, -0.4);
         }
-      
       }
+      
+    }
+      
       
   
     
-}
+
  
