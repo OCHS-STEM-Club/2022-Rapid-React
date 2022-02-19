@@ -14,10 +14,13 @@ public class Indexer {
 public void indexWheel(){
     if(controller.getPOV() == 0){
       indexerMotor.set(-0.75);
+   }else if(controller.getPOV() == 180){
+      indexerMotor.set(0.5);
    }else{
      indexerMotor.set(0);
      }
    }
+
 public void indexAuto(double x){
   indexerMotor.set(x);
 }
