@@ -19,11 +19,16 @@ public void intakeController(){
     }
     else if(controller.getRawButton(6)) {
         intakeMotor.set(-0.30);
+
     }else{
         intakeMotor.set(0);
     }
    
 }    
+
+public void intakeAuto(double x){
+    intakeMotor.set(x);
+  }
 
 
 }

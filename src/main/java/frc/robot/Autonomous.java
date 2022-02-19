@@ -25,13 +25,15 @@ public class Autonomous{
 
     Indexer indexerMotor;
     Shooter shooterMotor;
+    Intake intakeMotor;
     Timer timer = new Timer();
     Drive driveManager;
 
-    public Autonomous( Indexer i , Shooter s, Drive l){
+    public Autonomous( Indexer i , Shooter s, Intake in, Drive l){
         indexerMotor = i;
         shooterMotor = s; 
         driveManager = l;
+        intakeMotor = in;
     }
    
     public void timer() {
@@ -46,21 +48,41 @@ public class Autonomous{
        
 
         if (timer.get() < 2.0) {
-            shooterMotor.shooterAuto(0.8);
-            // if time is less than 3 seconds, start motor
+            shooterMotor.shooterAuto(0.65);
+            // start shooter motor
         } else if (timer.get() > 2 && timer.get() < 4) {
             indexerMotor.indexAuto(-0.75);
-        // if time is greater than 3 seconds and less than 5 seconds, start index wheel
-        } else if (timer.get() > 4 && timer.get() < 6) {
+        // start index wheel (shoots ball)
+        } else if (timer.get() > 4 && timer.get() < 4.5) {
              shooterMotor.shooterAuto(0);
              indexerMotor.indexAuto(0);
-             driveManager.auto(0,-0.25);
-        //if encoders are less than 10 and time is greater than 10 seconds, move at 50% speed forward
-        } else if (timer.get() > 6) {
+             driveManager.auto(0,-0.3);
+        // turn off shooter and indexer, drive backwards
+        } else if (timer.get() > 4.5 && timer.get() < 5.5) {
             driveManager.auto(0,0);
-        // if encoders are greater than 10, stop ALL motors
+            intakeMotor.intakeAuto(-0.3);
+        // drop and start intake
+        } else if (timer.get() > 5.5 && timer.get() < 7 ) {
+            driveManager.auto(0,-0.3); 
+        // continue moving backwards to intake ball
+        } else if (timer.get() > 7 && timer.get() < 9 ) {
+            driveManager.auto(0, 0); 
+            shooterMotor.shooterAuto(0.8);
+        // start shooter
+        } else if (timer.get() > 9 && timer.get() < 11 ) {
+            driveManager.auto(0, 0.3);
+        // move back to starting point
+        }else if (timer.get() > 11 && timer.get() < 13 ) {
+            indexerMotor.indexAuto(0);
+        }else if (timer.get() > 13 && timer.get() < 14 ) {
+            indexerMotor.indexAuto(-0.3);
+        //shoots ball
+        }else if (timer.get() > 14 && timer.get() < 15 ) {
+            shooterMotor.shooterAuto(0);
+            indexerMotor.indexAuto(0);
+            intakeMotor.intakeAuto(0);
+        // shuts off all motors
         }
-
     }
 }
 

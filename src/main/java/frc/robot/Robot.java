@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
   Indexer indexerMotor = new Indexer();
   Climber climber = new Climber();
   Potentiometer shooterPotentiometer = new Potentiometer();
-  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, driveManager);
+  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, intakeMotor, driveManager);
   
   
   //private AHRS navx = new AHRS();
@@ -123,11 +123,10 @@ public class Robot extends TimedRobot {
     driveManager.drive();
     //driveManager.encoders();
     shooterMotor.shooter();
-    shooterMotor.hoodMotor();
     shooterPotentiometer.hoodPotentiometer();
     indexerMotor.indexWheel();
     shooterMotor.shooterTemperatureAndPosition();
-    shooterMotor.hoodMotor();
+    //shooterMotor.hoodMotor();
     shooterMotor.ColorSensor();
     shooterMotor.getAllianceColor();
     shooterMotor.publishAllianceColor();
@@ -137,6 +136,8 @@ public class Robot extends TimedRobot {
     shooterMotor.isBallOurs();
     intakeMotor.intakeController(); 
     climber.climberControl();
+    shooterPotentiometer.hoodMotor();
+    shooterPotentiometer.setHood();
 
   }
 

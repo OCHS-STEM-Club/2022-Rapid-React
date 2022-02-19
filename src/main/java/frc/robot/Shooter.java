@@ -26,12 +26,10 @@ import edu.wpi.first.wpilibj.util.Color;
 
 public class Shooter {
   private WPI_TalonFX shooterMotor = new WPI_TalonFX(7);
-  private VictorSPX hoodMotor = new VictorSPX(11);
+  //private VictorSPX hoodMotor = new VictorSPX(11);
   private XboxController controller = new XboxController(1);
   // Encoder for shooter motor
   TalonFXConfiguration configs = new TalonFXConfiguration();
-
- 
 
 
   
@@ -43,7 +41,7 @@ public class Shooter {
   private ColorSensorV3 colorSensor;
   // private ColorMatch colorMatcher;
 
-
+/*
    public void hoodMotor() {
     if (controller.getRawAxis(2) > 0){
       hoodMotor.set(ControlMode.PercentOutput, 0.3);
@@ -54,13 +52,13 @@ public class Shooter {
     }
 
   }
-
+*/
     public void shooter(){
 
       //shooterMotor.set(controller.getRawAxis(1));
-      if(controller.getRawButton(8)){
+      if(controller.getRawButton(3)){
         shooterMotor.set(0.8);
-      }else if(controller.getRawButton(3)){
+      }else {
         shooterMotor.set(0);
       }
     }
