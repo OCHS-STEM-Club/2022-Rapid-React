@@ -119,7 +119,7 @@ public class Robot extends TimedRobot {
     driveManager.creep();
 
     shooterMotor.shooter();
-    shooterMotor.shooterTemperatureAndPosition();
+    //shooterMotor.shooterTemperatureAndPosition();
     shooterMotor.ColorSensor();
     shooterMotor.getAllianceColor();
     shooterMotor.publishAllianceColor();

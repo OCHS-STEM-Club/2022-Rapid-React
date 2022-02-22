@@ -10,13 +10,16 @@ import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorSensorV3;
 
 
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.math.controller.PIDController;
+
+
+
 
 public class Shooter {
   private WPI_TalonFX shooterMotor = new WPI_TalonFX(7);
@@ -25,6 +28,7 @@ public class Shooter {
   // Encoder for shooter motor
   TalonFXConfiguration configs = new TalonFXConfiguration();
 
+  private PIDController shooterController = new PIDController(0, 0, 0);
 
   
   //Constant that gets compares to the current shooter temperature
@@ -35,23 +39,25 @@ public class Shooter {
   private ColorSensorV3 colorSensor;
   // private ColorMatch colorMatcher;
 
-/*
-   public void hoodMotor() {
-    if (controller.getRawAxis(2) > 0){
-      hoodMotor.set(ControlMode.PercentOutput, 0.3);
-    }else if(controller.getRawAxis(3) > 0){
-      hoodMotor.set(ControlMode.PercentOutput, -0.3);
-    }else {
-      hoodMotor.set(ControlMode.PercentOutput, 0);
+    public double shooterTemperatureAndPosition() {
+
+      double shooterMotorPosition = shooterMotor.getSelectedSensorPosition();
+      SmartDashboard.putNumber("Shooter Position", shooterMotorPosition);
+      
+      double shooterMotorVelocity = -shooterMotor.getSelectedSensorVelocity();
+      //Only to show RPM on smart dashboard
+      SmartDashboard.putNumber("Shooter Velocity in RPM" , shooterMotorVelocity / 2048 * 600);
+      
+      double shooterMotorTemperature = shooterMotor.getTemperature() * 1.8 + 32;
+      SmartDashboard.putNumber("Shooter Temperature", shooterMotorTemperature);
+
+      
+    return shooterMotorPosition;
     }
 
-  }
-*/
     public void shooter(){
-
-      //shooterMotor.set(controller.getRawAxis(1));
       if(controller.getRawButton(3)){
-        shooterMotor.set(0.85);
+        shooterMotor.set(shooterController.calculate(shooterMotor.getSelectedSensorVelocity() , 1));
       }else {
         shooterMotor.set(0);
       }
@@ -60,28 +66,12 @@ public class Shooter {
       //shooterMotor.setNeutralMode(NeutralMode.Coast);
         // Spins motor
     
-    
+    public void ShooterPID() {
 
-    /*
-    *Takes the shooter motor temperature in Celcius and converts it to Fahrenheit 
-    *and puts the output on Dashboard. "If else" statement takes the shooter motor 
-    *temperature, and if it is heigher than the constant, then fire solonoids.
-    */
-   
-    
-    public double shooterTemperatureAndPosition() {
+      SmartDashboard.putNumber("Kp", shooterController.getP());
+      SmartDashboard.putNumber("Ki", shooterController.getI());
+      SmartDashboard.putNumber("Kd", shooterController.getD());
 
-      double shooterMotorPosition = shooterMotor.getSelectedSensorPosition();
-      SmartDashboard.putNumber("Shooter Position", shooterMotorPosition);
-      double shooterMotorVelocity = -shooterMotor.getSelectedSensorVelocity();
-      //Only to show RPM on smart dashboard
-      SmartDashboard.putNumber("Shooter Velocity in RPM" , shooterMotorVelocity/2048 * 600);
-      
-      double shooterMotorTemperature = shooterMotor.getTemperature() * 1.8 + 32;
-      SmartDashboard.putNumber("Shooter Temperature", shooterMotorTemperature);
-
-      
-    return shooterMotorPosition;
     }
 
     public void ColorSensor() {
@@ -147,4 +137,5 @@ public class Shooter {
     public void shooterAuto(double x){
         shooterMotor.set(x);
     }
+
   }
