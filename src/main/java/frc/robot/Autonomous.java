@@ -49,7 +49,7 @@ public class Autonomous{
        
 
         if (timer.get() < 2.0) {
-            shooterMotor.shooterAuto(0.64);
+            shooterMotor.shooterAuto(0.60);
             // start shooter motor
         } else if (timer.get() > 2 && timer.get() < 4) {
             indexerMotor.indexAuto(-0.75);
@@ -71,7 +71,7 @@ public class Autonomous{
         // start shooter
         } else if (timer.get() > 9 && timer.get() < 11 ) {
             driveManager.auto(0, 0.3);
-            shooterMotor.shooterAuto(0.71);
+            shooterMotor.shooterAuto(0.60);
         // move back to starting point
         }else if (timer.get() > 11 && timer.get() < 13 ) {
             indexerMotor.indexAuto(0);
