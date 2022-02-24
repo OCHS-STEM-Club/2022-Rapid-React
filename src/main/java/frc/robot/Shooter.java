@@ -47,7 +47,7 @@ public class Shooter {
     }
 
     public void shooter(){
-      System.out.print("ur mom" + shooterMotorVelocity);
+      System.out.print(shooterMotorVelocity);
       if(controller.getRawButton(3)){
         shooterMotor.set(shooterController.calculate(shooterMotorVelocity , 0.8));
         
