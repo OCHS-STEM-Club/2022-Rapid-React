@@ -108,6 +108,8 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
+    //shooterMotor.ShooterPID();
+
   //navx.zeroYaw();
   //resets the encoders of the drivemotors 
  }
@@ -119,19 +121,19 @@ public class Robot extends TimedRobot {
     driveManager.creep();
 
     shooterMotor.shooter();
-    //shooterMotor.shooterTemperatureAndPosition();
-    shooterMotor.ColorSensor();
-    shooterMotor.getAllianceColor();
-    shooterMotor.publishAllianceColor();
-    shooterMotor.getColor();
-    shooterMotor.getRed();
-    shooterMotor.getBlue();
-    shooterMotor.isBallOurs();
+    shooterMotor.shooterTemperatureAndPosition();
     
     indexerMotor.indexWheel();
-    
+    indexerMotor.ColorSensor();
+    indexerMotor.getAllianceColor();
+    indexerMotor.publishAllianceColor();
+    indexerMotor.getColor();
+    indexerMotor.getRed();
+    indexerMotor.getBlue();
+    indexerMotor.isBallOurs();
     intakeMotor.intakeController(); 
     
+
     climber.climberControl();
     
     shooterPotentiometer.hoodMotor();

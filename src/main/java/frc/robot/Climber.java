@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.XboxController;
 
 public class Climber {
     
-    private XboxController controller = new XboxController(1);
+    private XboxController controller = new XboxController(0);
     private DoubleSolenoid climberSolenoid = new DoubleSolenoid(13,PneumaticsModuleType.REVPH, 0,1);
     private DoubleSolenoid climberSolenoid2 = new DoubleSolenoid(13,PneumaticsModuleType.REVPH, 2,3); 
     public void setSpeedSoleniod(DoubleSolenoid climberSoleniod) {
