@@ -10,7 +10,7 @@ public class Intake {
 
     private CANSparkMax intakeMotor = new CANSparkMax(8, MotorType.kBrushless);
     private XboxController controller = new XboxController(1);
-    private CANSparkMax intakeLiftMotor = new CANSparkMax(21, MotorType.kBrushless);
+    private CANSparkMax intakeLiftMotor = new CANSparkMax(10, MotorType.kBrushless);
 
 
 public void intakeController(){
@@ -35,10 +35,10 @@ public void intakeAuto(double x){
 public void intakeUpDown(){
     // Press A and B to make intake go up and down. Max speed 0.3 currently.   
     if(controller.getRawButton(1) && intakeLiftMotor.getOutputCurrent() < 15){
-        intakeLiftMotor.set(0.3);
+        intakeLiftMotor.set(-0.1);
     }
     else if(controller.getRawButton(2) && intakeLiftMotor.getOutputCurrent() < 15) {
-        intakeLiftMotor.set(-0.3);
+        intakeLiftMotor.set(0.1);
 
     }else{
         intakeLiftMotor.set(0);

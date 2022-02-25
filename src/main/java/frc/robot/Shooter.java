@@ -22,7 +22,7 @@ public class Shooter {
   private XboxController controller = new XboxController(1);
   TalonFXConfiguration configs = new TalonFXConfiguration();
 
-  private PIDController shooterController = new PIDController(0.0165, 0.5, 0.0001);
+  private PIDController shooterController = new PIDController(0.05, 0, 0.0038);
  
   //Constant that is used in RotationRevolution
   final int UNITPERREV = 2048;
@@ -53,18 +53,16 @@ public class Shooter {
     public void shooter(){
     
       if(controller.getRawButton(3)){
-        shooterMotor.set(shooterController.calculate(shooterMotor.getSelectedSensorVelocity(), -12000));
-
+        shooterMotor.set(shooterController.calculate(shooterMotor.getSelectedSensorVelocity(), 12400));
         System.out.print("shooter velocity" + shooterMotor.getSelectedSensorVelocity() + "\n");
-
-       // shooterMotor.set(0.8);
+       //shooterMotor.set(0.8);
       }else {
         shooterMotor.set(0);
       }
     }
 
-    
-    /*public void ShooterPID() {
+    /*
+    public void ShooterPID() {
 
       SmartDashboard.putNumber("Kp", shooterController.getP());
       SmartDashboard.putNumber("Ki", shooterController.getI());
