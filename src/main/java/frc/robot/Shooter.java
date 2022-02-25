@@ -1,6 +1,7 @@
 package frc.robot;
 
 
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -21,7 +22,7 @@ public class Shooter {
   private XboxController controller = new XboxController(1);
   TalonFXConfiguration configs = new TalonFXConfiguration();
 
-  private PIDController shooterController = new PIDController(0.25,0, 0);
+  private PIDController shooterController = new PIDController(0.0165, 0.5, 0.0001);
  
   //Constant that is used in RotationRevolution
   final int UNITPERREV = 2048;
@@ -46,11 +47,15 @@ public class Shooter {
     return shooterMotorPosition;
     }
 
+    public void configSelectedFeedbackSensor(TalonFXFeedbackDevice integratedsensor, int i, int j) {
+    }
+
     public void shooter(){
-      System.out.print(shooterMotorVelocity);
+    
       if(controller.getRawButton(3)){
-        shooterMotor.set(shooterController.calculate(shooterMotorVelocity , 0.8));
-        
+        shooterMotor.set(shooterController.calculate(shooterMotor.getSelectedSensorVelocity(), -12000));
+
+        System.out.print("shooter velocity" + shooterMotor.getSelectedSensorVelocity() + "\n");
 
        // shooterMotor.set(0.8);
       }else {
@@ -67,11 +72,11 @@ public class Shooter {
 
     }*/
 
-    public void configSelectedFeedbackSensor(TalonFXFeedbackDevice integratedsensor, int i, int j) {
-    }
+    
 
     public void shooterAuto(double x){
         shooterMotor.set(x);
     }
 
+   
   }
