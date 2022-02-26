@@ -77,6 +77,7 @@ public class Shooter {
     
       if(controller.getRawButton(3)){
         shooterMotor.set(TalonFXControlMode.PercentOutput, -0.8);
+        //shooterMotor.set(ControlMode.Velocity, -velocityWant);
         //shooterMotor.set(shooterController.calculate(shooterMotor.getSelectedSensorVelocity(), -8000));
         System.out.print("shooter velocity" + shooterMotor.getSelectedSensorVelocity() + "\n");
        //shooterMotor.set(0.8);
