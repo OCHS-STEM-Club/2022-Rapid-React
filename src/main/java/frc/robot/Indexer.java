@@ -48,7 +48,7 @@ public void ColorSensor() {
 
 
 public Alliance getAllianceColor() {
-return DriverStation.getAlliance();
+  return DriverStation.getAlliance();
 }
 
 

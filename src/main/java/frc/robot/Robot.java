@@ -50,7 +50,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Top Speed", 0.5);
     driveManager.motorSettings();
 
-    shooterMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 30);
   }
 
   /**
@@ -126,13 +125,13 @@ public class Robot extends TimedRobot {
     shooterMotor.shooterTemperatureAndPosition();
     
     indexerMotor.indexWheel();
-    //indexerMotor.ColorSensor();
-    //indexerMotor.getAllianceColor();
-    //indexerMotor.publishAllianceColor();
-    //indexerMotor.getColor();
-    //indexerMotor.getRed();
-    //indexerMotor.getBlue();
-    //indexerMotor.isBallOurs();
+    indexerMotor.ColorSensor();
+    indexerMotor.getAllianceColor();
+    indexerMotor.publishAllianceColor();
+    indexerMotor.getColor();
+    indexerMotor.getRed();
+    indexerMotor.getBlue();
+    indexerMotor.isBallOurs();
 
     intakeMotor.intakeController(); 
     intakeMotor.intakeUpDown();
