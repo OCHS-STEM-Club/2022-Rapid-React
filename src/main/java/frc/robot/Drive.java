@@ -46,7 +46,7 @@ public class Drive {
        // Allows for change of speed limit on SmartDashboard for testing/demo 
 
         xStickValue = controller.getRawAxis(4) * topSpeed * creepSpeed;
-        yStickValue = controller.getRawAxis(1) * topSpeed * creepSpeed;
+        yStickValue = -controller.getRawAxis(1) * topSpeed * creepSpeed;
         differentialDrive.arcadeDrive(xStickValue, yStickValue, false);
 
     }

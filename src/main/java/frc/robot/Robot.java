@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
   Indexer indexerMotor = new Indexer();
   Climber climber = new Climber();
   Potentiometer shooterPotentiometer = new Potentiometer();
-  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, intakeMotor, driveManager);
+  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, intakeMotor, driveManager, intakeMotor);
   
   
   //private AHRS navx = new AHRS();

@@ -16,10 +16,10 @@ public class Intake {
 public void intakeController(){
     // if bumpers are pressed is pressed move the motor else don't move it
     if(controller.getRawButton(5)){
-        intakeMotor.set(0.8);
+        intakeMotor.set(0.9);
     }
     else if(controller.getRawButton(6)) {
-        intakeMotor.set(-0.8);
+        intakeMotor.set(-0.9);
 
     }else{
         intakeMotor.set(0);
@@ -44,6 +44,10 @@ public void intakeUpDown(){
         intakeLiftMotor.set(0);
     }
    
+}
+
+public void intakeLiftMotorAuto(double x) {
+    intakeLiftMotor.set(x);
 }
 
 

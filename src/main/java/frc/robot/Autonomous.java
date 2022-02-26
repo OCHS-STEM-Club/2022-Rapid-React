@@ -29,12 +29,14 @@ public class Autonomous{
     Intake intakeMotor;
     Timer timer = new Timer();
     Drive driveManager;
+    Intake intakeLiftMotor;
 
-    public Autonomous( Indexer i , Shooter s, Intake in, Drive l){
+    public Autonomous( Indexer i , Shooter s, Intake in, Drive l, Intake in2){
         indexerMotor = i;
         shooterMotor = s; 
         driveManager = l;
         intakeMotor = in;
+        intakeLiftMotor = in2;
     }
    
     public void timer() {
@@ -47,35 +49,29 @@ public class Autonomous{
       //  driveMotorLeft1.setNeutralMode(NeutralMode.Coast);
       //  driveMotorRight1.setNeutralMode(NeutralMode.Coast);
        
-
-        if (timer.get() < 2.0) {
+        if (timer.get() < 1) {
+            intakeLiftMotor.intakeLiftMotorAuto(-0.3);
+        } else if (timer.get() < 2) {
             shooterMotor.shooterAuto(0.60);
             // start shooter motor
         } else if (timer.get() > 2 && timer.get() < 4) {
             indexerMotor.indexAuto(-0.75);
         // start index wheel (shoots ball)
-        } else if (timer.get() > 4 && timer.get() < 4.5) {
+        } else if (timer.get() > 4 && timer.get() < 6.5) {
              shooterMotor.shooterAuto(0);
              indexerMotor.indexAuto(0);
              driveManager.auto(0,-0.3);
-        // turn off shooter and indexer, drive backwards
-        } else if (timer.get() > 4.5 && timer.get() < 5.5) {
-            driveManager.auto(0,0);
-            intakeMotor.intakeAuto(-0.3);
-        // drop and start intake
-        } else if (timer.get() > 5.5 && timer.get() < 7 ) {
-            driveManager.auto(0,-0.3); 
-        // continue moving backwards to intake ball
-        } else if (timer.get() > 7 && timer.get() < 9 ) {
+             intakeMotor.intakeAuto(-0.3);
+        } else if (timer.get() > 6.5 && timer.get() < 7.5) {
             driveManager.auto(0, 0); 
         // start shooter
-        } else if (timer.get() > 9 && timer.get() < 11 ) {
+        } else if (timer.get() > 7.5 && timer.get() < 10) {
             driveManager.auto(0, 0.3);
             shooterMotor.shooterAuto(0.60);
         // move back to starting point
-        }else if (timer.get() > 11 && timer.get() < 13 ) {
+        }else if (timer.get() > 10 && timer.get() < 12 ) {
             indexerMotor.indexAuto(0);
-        }else if (timer.get() > 13 && timer.get() < 14 ) {
+        }else if (timer.get() > 12 && timer.get() < 14 ) {
             indexerMotor.indexAuto(-0.3);
         //shoots ball
         }else if (timer.get() > 14 && timer.get() < 15 ) {
