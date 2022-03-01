@@ -49,32 +49,33 @@ public class Autonomous{
       //  driveMotorLeft1.setNeutralMode(NeutralMode.Coast);
       //  driveMotorRight1.setNeutralMode(NeutralMode.Coast);
        
-        if (timer.get() < 1) {
-            intakeLiftMotor.intakeLiftMotorAuto(-0.3);
-        } else if (timer.get() < 2) {
-            shooterMotor.shooterAuto(0.60);
+        if (timer.get() < 0.5) {
+            intakeLiftMotor.intakeLiftMotorAuto(0.3);
+        } else if (timer.get() > 0.5 && timer.get() < 3) {
+            intakeLiftMotor.intakeLiftMotorAuto(0);
+            shooterMotor.shooterAuto(3200);
             // start shooter motor
-        } else if (timer.get() > 2 && timer.get() < 4) {
+        } else if (timer.get() > 3 && timer.get() < 4) {
             indexerMotor.indexAuto(-0.75);
+            intakeMotor.intakeAuto(-0.85);
         // start index wheel (shoots ball)
-        } else if (timer.get() > 4 && timer.get() < 6.5) {
+        } else if (timer.get() > 4 && timer.get() < 5.5) {
              shooterMotor.shooterAuto(0);
              indexerMotor.indexAuto(0);
-             driveManager.auto(0,-0.3);
-             intakeMotor.intakeAuto(-0.3);
-        } else if (timer.get() > 6.5 && timer.get() < 7.5) {
+             driveManager.auto(0,0.3);
+        } else if (timer.get() > 5.5 && timer.get() < 6.5) {
             driveManager.auto(0, 0); 
         // start shooter
-        } else if (timer.get() > 7.5 && timer.get() < 10) {
-            driveManager.auto(0, 0.3);
-            shooterMotor.shooterAuto(0.60);
+        } else if (timer.get() > 6.5 && timer.get() < 8) {
+            driveManager.auto(0, -0.3);
+            shooterMotor.shooterAuto(3200);
         // move back to starting point
-        }else if (timer.get() > 10 && timer.get() < 12 ) {
+        }else if (timer.get() > 8 && timer.get() < 10 ) {
             indexerMotor.indexAuto(0);
-        }else if (timer.get() > 12 && timer.get() < 14 ) {
+        }else if (timer.get() > 10 && timer.get() < 12 ) {
             indexerMotor.indexAuto(-0.3);
         //shoots ball
-        }else if (timer.get() > 14 && timer.get() < 15 ) {
+        }else if (timer.get() > 12 && timer.get() < 15 ) {
             shooterMotor.shooterAuto(0);
             indexerMotor.indexAuto(0);
             intakeMotor.intakeAuto(0);

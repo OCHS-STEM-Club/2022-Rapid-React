@@ -41,9 +41,9 @@ public class Shooter {
     //shooterMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10;);
     shooterMotor.setSensorPhase(false);
     shooterMotor.setInverted(true);
-    shooterMotor.config_kP(0, 1.2, 10);
-    shooterMotor.config_kI(0, 0, 10);
-    shooterMotor.config_kD(0, 0.2, 10);
+    shooterMotor.config_kP(0, 0.7, 10);
+    shooterMotor.config_kI(0, 0.0001, 10);
+    shooterMotor.config_kD(0, 20, 10);
     shooterMotor.setNeutralMode(NeutralMode.Coast);
     shooterMotor.configPeakOutputForward(0, 10);
     shooterMotor.configClosedloopRamp(1, 10);
@@ -77,7 +77,7 @@ public class Shooter {
 
 
     public void shooter(){
-      velocityRPM = -3000;
+      velocityRPM = -3200;
       velocityWant = velocityRPM * 2048 / 600;
       //SmartDashboard.getNumber("shoot position", 12000);
       SmartDashboard.putNumber("velocity", -shooterMotor.getSelectedSensorVelocity());
@@ -99,7 +99,7 @@ public class Shooter {
         
 
     public void shooterAuto(double x){
-        shooterMotor.set(x);
+      shooterMotor.set(ControlMode.Velocity, -x * 2048 / 600);
     }
 
    
