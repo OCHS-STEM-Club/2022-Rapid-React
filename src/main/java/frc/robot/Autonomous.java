@@ -44,10 +44,8 @@ public class Autonomous{
         timer.start();
     }
     
-    public void autonomous() {
+    public Void autonomousShoot2Balls() {
         SmartDashboard.putNumber("Timer", timer.get());
-      //  driveMotorLeft1.setNeutralMode(NeutralMode.Coast);
-      //  driveMotorRight1.setNeutralMode(NeutralMode.Coast);
        
         if (timer.get() < 0.5) {
             intakeLiftMotor.intakeLiftMotorAuto(0.3);
@@ -81,8 +79,49 @@ public class Autonomous{
             intakeMotor.intakeAuto(0);
         // shuts off all motors
         }
+        return null;
     }
+    
+    public Void autonomousShoot1Ball(){
+        SmartDashboard.putNumber("Timer", timer.get());
+         
+          if (timer.get() < 0.5) {
+              intakeLiftMotor.intakeLiftMotorAuto(0.3);
+          } else if (timer.get() > 0.5 && timer.get() < 3) {
+              intakeLiftMotor.intakeLiftMotorAuto(0);
+              shooterMotor.shooterAuto(3200);
+              // start shooter motor
+          } else if (timer.get() > 3 && timer.get() < 4) {
+              indexerMotor.indexAuto(-0.75);
+              intakeMotor.intakeAuto(-0.85);
+          // start index wheel (shoots ball)
+          } else if (timer.get() > 4 && timer.get() < 5.5) {
+               shooterMotor.shooterAuto(0);
+               indexerMotor.indexAuto(0);
+               driveManager.auto(0,0.3);
+          } else if(timer.get()> 6){
+              driveManager.auto(0,0);
+              intakeMotor.intakeAuto(0);
+          }
+        return null;
+
+    }
+
+    public Void autonomousMoveOutOnly(){
+        SmartDashboard.putNumber("Timer", timer.get());
+
+        if(timer.get() < 0.5 ) {
+            intakeLiftMotor.intakeLiftMotorAuto(0.3);
+        } else if(timer.get() > 0.5 && timer.get() < 2){
+            driveManager.auto(0,0.3);
+        }else if (timer.get() > 1.5){
+            driveManager.auto(0,0);
+        }
+        return null;
+        
 }
+}
+
 
 
      

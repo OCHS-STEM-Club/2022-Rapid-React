@@ -30,10 +30,15 @@ public class Robot extends TimedRobot {
   
   
   //private AHRS navx = new AHRS();
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
+
   private String m_autoSelected;
-  private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  private final SendableChooser<Integer> m_chooser = new SendableChooser<Integer>();
+  
+  public Robot() {
+    m_chooser.setDefaultOption("2 Ball Shoot", 0);
+    m_chooser.addOption("1 Ball Shoot", 1);
+    m_chooser.addOption("Move", 2);
+  }
 
   
 
@@ -44,11 +49,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
     SmartDashboard.putNumber("Top Speed", 0.5);
     driveManager.motorSettings();
+    
 
   }
 
@@ -61,6 +64,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putData("Autonomous Chooser", m_chooser);
   }
 
   /**
@@ -77,39 +81,38 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
    //navx.zeroYaw();
       //resets the encoders of the drivemotors 
-  autonomous.timer();
+    autonomous.timer();
+
+    if (m_chooser.getSelected() == 0) {
+      autonomous.autonomousShoot2Balls();
+    } else if (m_chooser.getSelected() == 1) {
+      autonomous.autonomousShoot1Ball();
+    }else if (m_chooser.getSelected() == 2) {
+      autonomous.autonomousMoveOutOnly();
+    }
 
 
-    
-    
 
-    m_autoSelected = m_chooser.getSelected();
-    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
+
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-      
-
-        break;
-      case kDefaultAuto:
-      default:
-      
-     autonomous.autonomous();
-      
-      break;
+    
+    if (m_chooser.getSelected() == 0) {
+      autonomous.autonomousShoot2Balls();
+    } else if (m_chooser.getSelected() == 1) {
+      autonomous.autonomousShoot1Ball();
+    }else if (m_chooser.getSelected() == 2) {
+      autonomous.autonomousMoveOutOnly();
     }
-  }
+    }
+  
 
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-   // shooterMotor.ShooterPID();
 
   //navx.zeroYaw();
   //resets the encoders of the drivemotors 
