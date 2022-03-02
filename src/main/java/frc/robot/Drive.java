@@ -62,16 +62,8 @@ public class Drive {
     public void motorSettings() {
         driveMotorLeft1.setNeutralMode(NeutralMode.Brake);
         driveMotorRight1.setNeutralMode(NeutralMode.Brake);
-<<<<<<< HEAD
-
-        driveMotorLeft1.configOpenloopRamp(0.5);
-        driveMotorRight1.configOpenloopRamp(0.5);
-
-=======
- 
         driveMotorLeft1.configOpenloopRamp(0.75);
         driveMotorRight1.configOpenloopRamp(0.75);
->>>>>>> Khonsu-Robot-Code
     }
 
     public void auto(double x, double y) {
