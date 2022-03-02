@@ -4,11 +4,14 @@
 
 package frc.robot;
 
+
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -20,28 +23,36 @@ public class Robot extends TimedRobot {
   Drive driveManager = new Drive();
   Intake intakeMotor = new Intake();
   Shooter shooterMotor = new Shooter();
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
-  private String m_autoSelected;
-  private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  Indexer indexerMotor = new Indexer();
+  Climber climber = new Climber();
+  Potentiometer shooterPotentiometer = new Potentiometer();
+  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, intakeMotor, driveManager, intakeMotor);
+  
+  
+  //private AHRS navx = new AHRS();
 
+  private String m_autoSelected;
+  private final SendableChooser<Integer> m_chooser = new SendableChooser<Integer>();
+  
+  public Robot() {
+    m_chooser.setDefaultOption("2 Ball Shoot", 0);
+    m_chooser.addOption("1 Ball Shoot", 1);
+    m_chooser.addOption("Move", 2);
+  }
+
+  
+
+  
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
     SmartDashboard.putNumber("Top Speed", 0.5);
-
-    shooterMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 30);
-
-
+    driveManager.motorSettings();
     
-   
-    
+
   }
 
   /**
@@ -53,6 +64,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putData("Autonomous Chooser", m_chooser);
   }
 
   /**
@@ -67,48 +79,71 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autoSelected = m_chooser.getSelected();
-    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
+   //navx.zeroYaw();
+      //resets the encoders of the drivemotors 
+    autonomous.timer();
+
+    if (m_chooser.getSelected() == 0) {
+      autonomous.autonomousShoot2Balls();
+    } else if (m_chooser.getSelected() == 1) {
+      autonomous.autonomousShoot1Ball();
+    }else if (m_chooser.getSelected() == 2) {
+      autonomous.autonomousMoveOutOnly();
+    }
+
+
+
+
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
+    
+    if (m_chooser.getSelected() == 0) {
+      autonomous.autonomousShoot2Balls();
+    } else if (m_chooser.getSelected() == 1) {
+      autonomous.autonomousShoot1Ball();
+    }else if (m_chooser.getSelected() == 2) {
+      autonomous.autonomousMoveOutOnly();
     }
-  }
+    }
+  
 
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    
-  }
+
+  //navx.zeroYaw();
+  //resets the encoders of the drivemotors 
+ }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
     driveManager.drive();
-    driveManager.driveMotorPosition();
+    driveManager.creep();
+
     shooterMotor.shooter();
     shooterMotor.shooterTemperatureAndPosition();
-    shooterMotor.hoodMotor();
-    shooterMotor.ColorSensor();
-    shooterMotor.getAllianceColor();
-    shooterMotor.publishAllianceColor();
-    shooterMotor.getColor();
-    shooterMotor.getRed();
-    shooterMotor.getBlue();
-    shooterMotor.isBallOurs();
-    intakeMotor.intakeController(); 
+    
+    indexerMotor.indexWheel();
+    indexerMotor.ColorSensor();
+    indexerMotor.getAllianceColor();
+    indexerMotor.publishAllianceColor();
+    indexerMotor.getColor();
+    indexerMotor.getRed();
+    indexerMotor.getBlue();
+    indexerMotor.isBallOurs();
 
+    intakeMotor.intakeController(); 
+    intakeMotor.intakeUpDown();
+
+    climber.climberControl();
+    
+    shooterPotentiometer.hoodMotor();
+    shooterPotentiometer.setHood();
+    shooterPotentiometer.hoodPotentiometer();
   }
 
   /** This function is called once when the robot is disabled. */
