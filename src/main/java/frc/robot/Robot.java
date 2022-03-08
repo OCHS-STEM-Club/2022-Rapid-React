@@ -128,13 +128,13 @@ public class Robot extends TimedRobot {
     shooterMotor.shooterTemperatureAndPosition();
     
     indexerMotor.indexWheel();
-    indexerMotor.ColorSensor();
+    /*indexerMotor.ColorSensor();
     indexerMotor.getAllianceColor();
     indexerMotor.publishAllianceColor();
     indexerMotor.getColor();
     indexerMotor.getRed();
     indexerMotor.getBlue();
-    indexerMotor.isBallOurs();
+    indexerMotor.isBallOurs();*/
 
     intakeMotor.intakeController(); 
     intakeMotor.intakeUpDown();
@@ -142,7 +142,7 @@ public class Robot extends TimedRobot {
     climber.climberControl();
     
     shooterPotentiometer.hoodMotor();
-    shooterPotentiometer.setHood();
+    //shooterPotentiometer.setHood();
     shooterPotentiometer.hoodPotentiometer();
   }
 

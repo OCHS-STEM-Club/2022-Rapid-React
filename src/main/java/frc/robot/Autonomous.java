@@ -64,16 +64,16 @@ public class Autonomous{
         } else if (timer.get() > 5.5 && timer.get() < 6.5) {
             driveManager.auto(0, 0); 
         // start shooter
-        } else if (timer.get() > 6.5 && timer.get() < 8) {
+        } else if (timer.get() > 6.5 && timer.get() < 8.0) {
             driveManager.auto(0, -0.3);
             shooterMotor.shooterAuto(3200);
         // move back to starting point
-        }else if (timer.get() > 8 && timer.get() < 10 ) {
+        }else if (timer.get() > 8.0 && timer.get() < 10.0 ) {
             indexerMotor.indexAuto(0);
-        }else if (timer.get() > 10 && timer.get() < 12 ) {
+        }else if (timer.get() > 10.0 && timer.get() < 12.0 ) {
             indexerMotor.indexAuto(-0.3);
         //shoots ball
-        }else if (timer.get() > 12 && timer.get() < 15 ) {
+        }else if (timer.get() > 12.0 && timer.get() < 15 ) {
             shooterMotor.shooterAuto(0);
             indexerMotor.indexAuto(0);
             intakeMotor.intakeAuto(0);

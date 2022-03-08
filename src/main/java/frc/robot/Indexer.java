@@ -1,12 +1,12 @@
 package frc.robot;
 
 
-import edu.wpi.first.wpilibj.I2C;
+//import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.XboxController;
 
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.ColorMatch;
+/*import com.revrobotics.ColorMatch;
 //import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
 
@@ -15,13 +15,13 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
-
+*/
 
 
 public class Indexer {
     private CANSparkMax indexerMotor = new CANSparkMax(20 , MotorType.kBrushless);
     private XboxController controller = new XboxController(1);
-    private ColorSensorV3 colorSensor;
+    //private ColorSensorV3 colorSensor;
 
 
 public void indexWheel(){
@@ -39,7 +39,7 @@ public void indexAuto(double x){
   indexerMotor.set(x);
 }
 
-
+/*
 public void ColorSensor() {
   I2C.Port i2cPort = I2C.Port.kOnboard;
   colorSensor = new ColorSensorV3(i2cPort);
@@ -96,7 +96,7 @@ public void isBallOurs() {
     SmartDashboard.putBoolean("Is Ball Ours", true);
   } else SmartDashboard.putBoolean("Is Ball Ours", false);
 
-}
+}*/
 
 }
 
