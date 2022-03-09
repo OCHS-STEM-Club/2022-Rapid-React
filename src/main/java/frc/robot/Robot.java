@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import edu.wpi.first.wpilibj.XboxController;
+
 
 
 /**
@@ -27,6 +29,12 @@ public class Robot extends TimedRobot {
   Climber climber = new Climber();
   Potentiometer shooterPotentiometer = new Potentiometer();
   Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, intakeMotor, driveManager, intakeMotor);
+  Limelight limelight = new Limelight();
+
+  private XboxController controller = new XboxController(1);
+
+  double visionTurn;
+  double visionMove;
   
   
   //private AHRS navx = new AHRS();
@@ -121,6 +129,15 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+
+   /* if (controller.getRawButton(3)) {
+      visionTurn = limelight.trackTurn();
+      driveManager.subclassTurn(visionTurn, controller.getRawAxis(4) * 0.5);
+    }
+    else {
+      driveManager.drive();
+    }
+    */
     driveManager.drive();
     driveManager.creep();
 
@@ -144,6 +161,11 @@ public class Robot extends TimedRobot {
     shooterPotentiometer.hoodMotor();
     //shooterPotentiometer.setHood();
     shooterPotentiometer.hoodPotentiometer();
+    //shooterPotentiometer.hoodMotor2();
+    shooterPotentiometer.hoodMotor3();
+
+    limelight.limelight();
+    limelight.getDistance();
   }
 
   /** This function is called once when the robot is disabled. */

@@ -92,11 +92,12 @@ public class Shooter {
         System.out.print("shooter velocity " + shooterMotor.getSelectedSensorVelocity() + " velocityWant " + velocityWant + "\n");
   
        //shooterMotor.set(0.8);
+      }else if (controller.getRawButton(4)) {
+        shooterMotor.set(ControlMode.Velocity, -2100 * 2048 / 600);
       }else {
         shooterMotor.set(0);
       }
-    }
-        
+  }
 
     public void shooterAuto(double x){
       shooterMotor.set(ControlMode.Velocity, -x * 2048 / 600);
