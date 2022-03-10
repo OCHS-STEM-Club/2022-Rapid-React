@@ -67,9 +67,9 @@ public class Drive {
         driveMotorRight1.configOpenloopRamp(0.75);
     }
 
-    /*public void subclassTurn(double turnValue, double moveValue) {
-        differentialDrive.arcadeDrive(moveValue, turnValue);
-    }*/
+    public void subclassTurn(double turnValue, double moveValue) {
+        differentialDrive.arcadeDrive(turnValue, moveValue, false);
+    }
 
     public void auto(double x, double y) {
         differentialDrive.arcadeDrive(x ,y , false);

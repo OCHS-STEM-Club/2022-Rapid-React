@@ -130,15 +130,15 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
-   /* if (controller.getRawButton(3)) {
+    if (controller.getRawButton(8)) {
       visionTurn = limelight.trackTurn();
       driveManager.subclassTurn(visionTurn, controller.getRawAxis(4) * 0.5);
     }
     else {
       driveManager.drive();
     }
-    */
-    driveManager.drive();
+    
+    //driveManager.drive();
     driveManager.creep();
 
     shooterMotor.shooter();
@@ -162,7 +162,7 @@ public class Robot extends TimedRobot {
     //shooterPotentiometer.setHood();
     shooterPotentiometer.hoodPotentiometer();
     //shooterPotentiometer.hoodMotor2();
-    shooterPotentiometer.hoodMotor3();
+    //shooterPotentiometer.hoodMotor3();
 
     limelight.limelight();
     limelight.getDistance();
