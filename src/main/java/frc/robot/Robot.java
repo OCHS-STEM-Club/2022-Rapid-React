@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
   Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, intakeMotor, driveManager, intakeMotor);
   Limelight limelight = new Limelight();
 
-  private XboxController controller = new XboxController(1);
+  private XboxController controller = new XboxController(0);
 
   double visionTurn;
   double visionMove;
@@ -73,6 +73,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     SmartDashboard.putData("Autonomous Chooser", m_chooser);
+    limelight.limelight();
   }
 
   /**
@@ -162,10 +163,10 @@ public class Robot extends TimedRobot {
     //shooterPotentiometer.setHood();
     shooterPotentiometer.hoodPotentiometer();
     //shooterPotentiometer.hoodMotor2();
-    //shooterPotentiometer.hoodMotor3();
+    shooterPotentiometer.hoodMotor3();
+   //limelight.limelight();
+   
 
-    limelight.limelight();
-    limelight.getDistance();
   }
 
   /** This function is called once when the robot is disabled. */

@@ -77,7 +77,7 @@ public class Shooter {
 
 
     public void shooter(){
-      velocityRPM = -3200;
+      velocityRPM = -2700;
       velocityWant = velocityRPM * 2048 / 600;
       //SmartDashboard.getNumber("shoot position", 12000);
       SmartDashboard.putNumber("velocity", -shooterMotor.getSelectedSensorVelocity());
@@ -93,7 +93,7 @@ public class Shooter {
   
        //shooterMotor.set(0.8);
       }else if (controller.getRawButton(4)) {
-        shooterMotor.set(ControlMode.Velocity, -2100 * 2048 / 600);
+        shooterMotor.set(ControlMode.Velocity, -1700 * 2048 / 600);
       }else {
         shooterMotor.set(0);
       }
