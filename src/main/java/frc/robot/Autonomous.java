@@ -17,11 +17,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
-
-
-
-
-
 public class Autonomous{
 
     Indexer indexerMotor;
@@ -44,7 +39,7 @@ public class Autonomous{
         timer.start();
     }
     
-    public Void autonomousShoot2Balls2() {
+    public Void autonomousShoot2Balls() {
         SmartDashboard.putNumber("Timer", timer.get());
        
         if (timer.get() < 0.5) {
@@ -81,8 +76,8 @@ public class Autonomous{
         }
         return null;
     }
-
-    public Void autonomousShoot2Balls() {
+//Second 2 ball shoot auto
+    public Void autonomousShoot2Balls2() {
         SmartDashboard.putNumber("Timer", timer.get());
        
         if (timer.get() < 0.5) {
@@ -129,7 +124,6 @@ public class Autonomous{
               // start shooter motor
           } else if (timer.get() > 3 && timer.get() < 4) {
               indexerMotor.indexAuto(-0.75);
-              intakeMotor.intakeAuto(-0.85);
           // start index wheel (shoots ball)
           } else if (timer.get() > 4 && timer.get() < 5.5) {
                shooterMotor.shooterAuto(0);
@@ -137,7 +131,7 @@ public class Autonomous{
                driveManager.auto(0,0.3);
           } else if(timer.get()> 6){
               driveManager.auto(0,0);
-              intakeMotor.intakeAuto(0);
+
           }
         return null;
 

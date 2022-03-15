@@ -44,8 +44,9 @@ public class Robot extends TimedRobot {
   
   public Robot() {
     m_chooser.setDefaultOption("2 Ball Shoot", 0);
-    m_chooser.addOption("1 Ball Shoot", 1);
-    m_chooser.addOption("Move", 2);
+    m_chooser.addOption("2 Ball Shoot Part 2", 1);
+    m_chooser.addOption("1 Ball Shoot", 2);
+    m_chooser.addOption("Move", 3);
   }
 
   
@@ -94,7 +95,9 @@ public class Robot extends TimedRobot {
 
     if (m_chooser.getSelected() == 0) {
       autonomous.autonomousShoot2Balls();
-    } else if (m_chooser.getSelected() == 1) {
+    } else if(m_chooser.getSelected() == 1){
+      autonomous.autonomousShoot2Balls2();
+    }else if (m_chooser.getSelected() == 1) {
       autonomous.autonomousShoot1Ball();
     }else if (m_chooser.getSelected() == 2) {
       autonomous.autonomousMoveOutOnly();
@@ -163,7 +166,7 @@ public class Robot extends TimedRobot {
     //shooterPotentiometer.setHood();
     shooterPotentiometer.hoodPotentiometer();
     //shooterPotentiometer.hoodMotor2();
-    shooterPotentiometer.hoodMotor3();
+    //shooterPotentiometer.hoodMotor3();
    //limelight.limelight();
    
 

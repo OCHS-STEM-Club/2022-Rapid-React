@@ -6,7 +6,6 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
 public class Limelight {
 
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-khonsu");
@@ -17,12 +16,12 @@ public class Limelight {
     NetworkTableEntry ta = table.getEntry("ta");
     NetworkTableEntry tl = table.getEntry("tl");
     
-    static double  limelightMountAngleDegrees = 25; //mount angle from vertical
+    static double  limelightMountAngleDegrees = 30; //mount angle from vertical
     static double limelightLensHeightInches = 17.4375; //distance (in) from center of limelight lenses to floor
     static double goalHeightInches = 104; //height of upper hub
 
-    double targetOffsetAngle_Vertical = tx.getDouble(0.0);
-    double targetOffsetAngle_Horizontal = ty.getDouble(0.0);
+    double targetOffsetAngle_Vertical = ty.getDouble(0.0);
+    double targetOffsetAngle_Horizontal = tx.getDouble(0.0);
     double targetArea = ta.getDouble(0.0);
     double targetSkew = tl.getDouble(0.0);
 
@@ -32,9 +31,7 @@ public class Limelight {
     //double targetArea = table.getEntry("ta").getDouble(0.0);
     //double targetSkew = table.getEntry("ts").getDouble(0.0);
 
-    
-
-
+  
     private double targetValue;
     private double turnOutput;
     private final double MAX_STEER = 0.1;
@@ -46,8 +43,8 @@ public class Limelight {
         NetworkTableEntry ta = table.getEntry("ta");
         NetworkTableEntry tl = table.getEntry("tl");
 
-        double targetOffsetAngle_Vertical = tx.getDouble(0.0);
-        double targetOffsetAngle_Horizontal = ty.getDouble(0.0);
+        double targetOffsetAngle_Vertical = ty.getDouble(0.0);
+        double targetOffsetAngle_Horizontal = tx.getDouble(0.0);
         double targetArea = ta.getDouble(0.0);
         double targetSkew = tl.getDouble(0.0);
 
@@ -55,7 +52,6 @@ public class Limelight {
         SmartDashboard.putNumber("ty", targetOffsetAngle_Vertical);
         SmartDashboard.putNumber("ta", targetArea);
         SmartDashboard.putNumber("tl", targetSkew);
-
      
 
         double angleToGoalDegrees = limelightMountAngleDegrees + targetOffsetAngle_Vertical;
@@ -87,7 +83,7 @@ public class Limelight {
     
         if (targetValue == 1) {
             turnOutput = targetOffsetAngle_Horizontal * STEER_K; //or divid by max value (27 degrees)
-            turnOutput = clamp(turnOutput,-MAX_STEER,MAX_STEER);
+            turnOutput = clamp(turnOutput, -MAX_STEER, MAX_STEER);
             return turnOutput;
         }
         else {
