@@ -20,6 +20,8 @@ public class Drive {
 
     private XboxController controller = new XboxController(0);
 
+    PIDController driveController = new PIDController(2.3449, 0, 0.19168);
+
 
     public double driveMotorLeftPosition = driveMotorLeft1.getSelectedSensorPosition(3);
     public double driveMotorRightPosition = driveMotorRight1.getSelectedSensorPosition(5);
@@ -42,13 +44,15 @@ public class Drive {
         driveMotorLeft2.follow(driveMotorLeft1);
         driveMotorRight2.follow(driveMotorRight1);
 
-        /*driveMotorLeft1.config_kP(0, 0, 0);
-        driveMotorLeft1.config_kI(0, 0, 0);
-        driveMotorLeft1.config_kD(0, 0, 0);
+        driveController.setTolerance(6913.6);
 
-        driveMotorRight1.config_kP(0, 0, 0);
-        driveMotorRight1.config_kI(0, 0, 0);
-        driveMotorRight1.config_kD(0, 0, 0);*/
+        /*driveMotorLeft1.config_kP(0, 0.0092204, 10);
+        driveMotorLeft1.config_kI(0, 0, 10);
+        driveMotorLeft1.config_kD(0, 0.70703, 10);
+
+        driveMotorRight1.config_kP(0, 0.0092204, 10);
+        driveMotorRight1.config_kI(0, 0, 10);
+        driveMotorRight1.config_kD(0, 0.70703, 10);*/
 
   
        
@@ -89,6 +93,42 @@ public class Drive {
 
     public void auto(double x, double y) {
         differentialDrive.arcadeDrive(x ,y , false);
+    }
+
+    private double distanceToRevolutions(double distance) {
+        distance /= 6 * Math.PI;
+        distance *= 10.86;
+        distance *= 2048;
+
+        return distance;
+    }
+
+    private double clamp(double in, double minval, double maxval) {
+        if (in > maxval) {
+          return maxval;
+        }
+        else if (in < minval) {
+          return minval;
+        }
+        else {
+          return in;
+        }
+    }
+
+    public boolean autoDrive(double x) {
+        driveMotorLeftPosition = driveMotorLeft1.getSelectedSensorPosition(3);
+        driveMotorRightPosition = driveMotorRight1.getSelectedSensorPosition(5);
+        getAverageDistance = (driveMotorLeftPosition + driveMotorRightPosition) /2;
+        
+        double revolutionsNeed = distanceToRevolutions(x);
+        double power = driveController.calculate(getAverageDistance, revolutionsNeed);
+        power = clamp(power, -0.5, 0.5);
+
+        differentialDrive.arcadeDrive(0, power);
+
+        if (driveController.atSetpoint()) {
+            return true;
+        } else return false;
     }
 
 }

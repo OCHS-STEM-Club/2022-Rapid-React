@@ -26,6 +26,8 @@ public class Autonomous{
     Drive driveManager;
     Intake intakeLiftMotor;
 
+    boolean isFalse = false;
+
     public Autonomous( Indexer i , Shooter s, Intake in, Drive l, Intake in2){
         indexerMotor = i;
         shooterMotor = s; 
@@ -39,7 +41,7 @@ public class Autonomous{
         timer.start();
     }
     
-    public Void autonomousShoot2Balls() {
+    public Void autonomousShoot2Ballslol() {
         SmartDashboard.putNumber("Timer", timer.get());
        
         if (timer.get() < 0.5) {
@@ -135,6 +137,13 @@ public class Autonomous{
           }
         return null;
 
+    }
+
+    public Void autonomousShoot2Balls() {
+        if (!isFalse) {
+            isFalse = driveManager.autoDrive(36);
+        } else driveManager.auto(0, 0);
+        return null;
     }
 
     public Void autonomousMoveOutOnly(){
