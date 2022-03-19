@@ -31,6 +31,7 @@ public class Drive {
 
     public double getAverageDistance = (driveMotorLeftPosition + driveMotorRightPosition) /2;
 
+
     
 
     private double topSpeed = 0.6; //Percent value for drive motor speed from 0 to 1
@@ -63,6 +64,7 @@ public class Drive {
      */
     public void drive(){
        topSpeed = SmartDashboard.getNumber("Top Speed", 0.6); 
+       System.out.print(getAverageDistance);
        // Allows for change of speed limit on SmartDashboard for testing/demo 
 
         xStickValue = controller.getRawAxis(4) * topSpeed * creepSpeed;
@@ -74,7 +76,9 @@ public class Drive {
     public void creep(){
         if(controller.getRawAxis(2) == 1){
             creepSpeed = 0.5;
-        } else {
+        }else if(controller.getRawAxis(3) == 1){
+            creepSpeed = 1.5;
+        }else {
             creepSpeed = 1;
         }
     }
@@ -95,6 +99,7 @@ public class Drive {
         differentialDrive.arcadeDrive(x ,y , false);
     }
 
+    
     private double distanceToRevolutions(double distance) {
         distance /= 6 * Math.PI;
         distance *= 10.86;

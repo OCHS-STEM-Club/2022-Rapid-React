@@ -38,9 +38,9 @@ public class Potentiometer {
       }
 
         public void hoodMotor3() {
-        if (controller.getRawButton(3) && hoodPotentiometer.get() > 0.041) {
+        if (controller.getRawButton(3) && hoodPotentiometer.get() > 0.066) {
           hoodMotor.set(ControlMode.PercentOutput, 0.15);
-        } else if (controller.getRawButton(3) && hoodPotentiometer.get() < 0.036) {
+        } else if (controller.getRawButton(3) && hoodPotentiometer.get() < 0.06) {
           hoodMotor.set(ControlMode.PercentOutput, -0.15);
         } 
         

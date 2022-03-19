@@ -5,7 +5,6 @@
 package frc.robot;
 
 
-import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -28,8 +27,8 @@ public class Robot extends TimedRobot {
   Indexer indexerMotor = new Indexer();
   Climber climber = new Climber();
   Potentiometer shooterPotentiometer = new Potentiometer();
-  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, intakeMotor, driveManager, intakeMotor);
   Limelight limelight = new Limelight();
+  Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, intakeMotor, driveManager, intakeMotor, limelight);
 
   private XboxController controller = new XboxController(0);
 
@@ -47,6 +46,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("2 Ball Shoot Part 2", 1);
     m_chooser.addOption("1 Ball Shoot", 2);
     m_chooser.addOption("Move", 3);
+    //m_chooser.addOption("DrivePID", 4);
   }
 
   
@@ -75,6 +75,8 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     SmartDashboard.putData("Autonomous Chooser", m_chooser);
     limelight.limelight();
+    limelight.getDistance();
+  
   }
 
   /**
@@ -97,15 +99,13 @@ public class Robot extends TimedRobot {
       autonomous.autonomousShoot2Balls();
     } else if(m_chooser.getSelected() == 1){
       autonomous.autonomousShoot2Balls2();
-    }else if (m_chooser.getSelected() == 1) {
-      autonomous.autonomousShoot1Ball();
     }else if (m_chooser.getSelected() == 2) {
+      autonomous.autonomousShoot1Ball();
+    }else if (m_chooser.getSelected() == 3) {
       autonomous.autonomousMoveOutOnly();
-    }
-
-
-
-
+    } /*else if (m_chooser.getSelected() == 4) {
+      autonomous.autonomousDrivePID();
+    }*/
   }
 
   /** This function is called periodically during autonomous. */
@@ -115,10 +115,14 @@ public class Robot extends TimedRobot {
     if (m_chooser.getSelected() == 0) {
       autonomous.autonomousShoot2Balls();
     } else if (m_chooser.getSelected() == 1) {
-      autonomous.autonomousShoot1Ball();
+      autonomous.autonomousShoot2Balls2();
     }else if (m_chooser.getSelected() == 2) {
+      autonomous.autonomousShoot1Ball();
+    }else if (m_chooser.getSelected() == 3) {
       autonomous.autonomousMoveOutOnly();
-    }
+    }/* else if (m_chooser.getSelected() == 4) {
+      autonomous.autonomousDrivePID();
+    }*/
     }
   
 
@@ -147,6 +151,7 @@ public class Robot extends TimedRobot {
 
     shooterMotor.shooter();
     shooterMotor.shooterTemperatureAndPosition();
+    autonomous.limelightAutoSet();
     
     indexerMotor.indexWheel();
     /*indexerMotor.ColorSensor();
@@ -166,11 +171,18 @@ public class Robot extends TimedRobot {
     //shooterPotentiometer.setHood();
     shooterPotentiometer.hoodPotentiometer();
     //shooterPotentiometer.hoodMotor2();
-    //shooterPotentiometer.hoodMotor3();
+    shooterPotentiometer.hoodMotor3();
    //limelight.limelight();
-   
 
+    //autonomous.limelightAutoSet();
+
+    limelight.getDistance();
+
+   
   }
+
+
+
 
   /** This function is called once when the robot is disabled. */
   @Override

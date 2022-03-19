@@ -3,7 +3,6 @@ package frc.robot;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Limelight {
@@ -24,6 +23,9 @@ public class Limelight {
     double targetOffsetAngle_Horizontal = tx.getDouble(0.0);
     double targetArea = ta.getDouble(0.0);
     double targetSkew = tl.getDouble(0.0);
+
+   
+
 
     
     //double targetOffsetAngle_Horizontal = table.getEntry("tx").getDouble(0.0);
@@ -52,14 +54,23 @@ public class Limelight {
         SmartDashboard.putNumber("ty", targetOffsetAngle_Vertical);
         SmartDashboard.putNumber("ta", targetArea);
         SmartDashboard.putNumber("tl", targetSkew);
-     
 
+        
         double angleToGoalDegrees = limelightMountAngleDegrees + targetOffsetAngle_Vertical;
         double angleToGoalRadians = angleToGoalDegrees * (Math.PI / 180);
-
         double distanceFromLimelightToGoalInches = (goalHeightInches - limelightLensHeightInches) / Math.tan(angleToGoalRadians);
-    
         SmartDashboard.putNumber("Distance to Hub", distanceFromLimelightToGoalInches);
+
+    }
+     
+
+    public double getDistance() {
+        double angleToGoalDegrees = limelightMountAngleDegrees + targetOffsetAngle_Vertical;
+        double angleToGoalRadians = angleToGoalDegrees * (Math.PI / 180);
+        double distanceFromLimelightToGoalInches = (goalHeightInches - limelightLensHeightInches) / Math.tan(angleToGoalRadians);
+        System.out.print(distanceFromLimelightToGoalInches);
+        return distanceFromLimelightToGoalInches;
+
     }
     
 
@@ -90,6 +101,8 @@ public class Limelight {
             return 0;
         }
     }
+
+  
 
 
 }
