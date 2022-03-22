@@ -146,12 +146,12 @@ public class Robot extends TimedRobot {
       driveManager.drive();
     }
     
-    //driveManager.drive();
     driveManager.creep();
 
     shooterMotor.shooter();
     shooterMotor.shooterTemperatureAndPosition();
     autonomous.limelightAutoSet();
+    autonomous.bloop();
     
     indexerMotor.indexWheel();
     /*indexerMotor.ColorSensor();

@@ -171,7 +171,7 @@ public Void limelightAutoSet() {
     if(controller.getRawButton(3) && limelight.getDistance() > 70 && limelight.getDistance() < 107) {
       shooterMotor.shooterAuto(2800);
     } else if (controller.getRawButton(3) && limelight.getDistance() > 108 && limelight.getDistance() < 140) {
-        shooterMotor.shooterAuto(2950); 
+        shooterMotor.shooterAuto(2920); 
     } else if (controller.getRawButton(3) && limelight.getDistance() > 141 && limelight.getDistance() < 160) {
         shooterMotor.shooterAuto(3150);
      }else if (controller.getRawButton(3) && limelight.getDistance() > 160 && limelight.getDistance() < 190) {
@@ -181,10 +181,14 @@ public Void limelightAutoSet() {
     }else shooterMotor.shooterAuto(0);
     return null;
   }
+
+public Void bloop(){
+    if(controller.getRawButton(4)){
+        shooterMotor.shooterAuto(1800);
+    }
+    return null;
 }
-
-
-
+}
      
       
     

@@ -34,7 +34,7 @@ public class Drive {
 
     
 
-    private double topSpeed = 0.6; //Percent value for drive motor speed from 0 to 1
+    private double topSpeed = 0.5; //Percent value for drive motor speed from 0 to 1
     private double creepSpeed = 1;
     private double xStickValue; //Variable to store the value from the Xbox Controller
     private double yStickValue; //Variable to store the value from the Xbox Controller
@@ -77,7 +77,7 @@ public class Drive {
         if(controller.getRawAxis(2) == 1){
             creepSpeed = 0.5;
         }else if(controller.getRawAxis(3) == 1){
-            creepSpeed = 1.5;
+            creepSpeed = 2;
         }else {
             creepSpeed = 1;
         }

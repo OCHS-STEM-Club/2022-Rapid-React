@@ -3,6 +3,7 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -71,7 +72,7 @@ public class Shooter {
 
 
     public void shooter(){
-      velocityRPM = -3000;
+      velocityRPM = -1700;
       velocityWant = velocityRPM * 2048 / 600;
       //SmartDashboard.getNumber("shoot position", 12000);
       SmartDashboard.putNumber("velocity", -shooterMotor.getSelectedSensorVelocity());
@@ -88,13 +89,10 @@ public class Shooter {
 
        //shooterMotor.set(0.8);
        */
-      if (controller.getRawButtonPressed(4)) {
-        shooterMotor.set(ControlMode.Velocity, -1700 * 2048 / 600);
-      } else if (controller.getRawButtonReleased(4)) {
-        shooterMotor.set(ControlMode.Velocity, 0);
+     
       }
   
-    }
+    
   
     public void shooterAuto(double x){
       shooterMotor.set(ControlMode.Velocity, -x * 2048 / 600);
