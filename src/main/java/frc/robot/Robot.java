@@ -170,7 +170,6 @@ public class Robot extends TimedRobot {
     shooterPotentiometer.hoodMotor();
     //shooterPotentiometer.setHood();
     shooterPotentiometer.hoodPotentiometer();
-    //shooterPotentiometer.hoodMotor2();
     shooterPotentiometer.hoodMotor3();
    //limelight.limelight();
 
