@@ -2,28 +2,22 @@ package frc.robot;
 
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
-
-
-
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardComponent;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
-import edu.wpi.first.math.controller.PIDController;
+
 
 
 
 
 public class Shooter {
+  
+
+
   private WPI_TalonFX shooterMotor = new WPI_TalonFX(7);
   private XboxController controller = new XboxController(1);
   TalonFXConfiguration configs = new TalonFXConfiguration();
@@ -77,7 +71,7 @@ public class Shooter {
 
 
     public void shooter(){
-      velocityRPM = -3200;
+      velocityRPM = -1700;
       velocityWant = velocityRPM * 2048 / 600;
       //SmartDashboard.getNumber("shoot position", 12000);
       SmartDashboard.putNumber("velocity", -shooterMotor.getSelectedSensorVelocity());
@@ -85,22 +79,24 @@ public class Shooter {
 
        //double shooterMotorVelocityRPM = -shooterMotor.getSelectedSensorVelocity() / 2048 * 600;
     
-      if(controller.getRawButton(3)){
+      /*if(controller.getRawButton(3)){
         //shooterMotor.set(TalonFXControlMode.PercentOutput, -0.7);
         shooterMotor.set(ControlMode.Velocity, velocityWant);
         //shooterMotor.set(shooterController.calculate(shooterMotor.getSelectedSensorVelocity(), -8000));
         System.out.print("shooter velocity " + shooterMotor.getSelectedSensorVelocity() + " velocityWant " + velocityWant + "\n");
   
-       //shooterMotor.set(0.8);
-      }else {
-        shooterMotor.set(0);
-      }
-    }
-        
 
+       //shooterMotor.set(0.8);
+       */
+     
+      }
+  
+    
+  
     public void shooterAuto(double x){
       shooterMotor.set(ControlMode.Velocity, -x * 2048 / 600);
     }
+
 
    
   }
