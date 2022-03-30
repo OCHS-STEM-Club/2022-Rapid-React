@@ -34,7 +34,7 @@ public class Drive {
 
     
 
-    private double topSpeed = 0.5; //Percent value for drive motor speed from 0 to 1
+    private double topSpeed = 0.65; //Percent value for drive motor speed from 0 to 1
     private double creepSpeed = 1;
     private double xStickValue; //Variable to store the value from the Xbox Controller
     private double yStickValue; //Variable to store the value from the Xbox Controller
@@ -63,7 +63,7 @@ public class Drive {
      * Main method of driving for Teleop
      */
     public void drive(){
-       topSpeed = SmartDashboard.getNumber("Top Speed", 0.6); 
+       topSpeed = SmartDashboard.getNumber("Top Speed", 0.65); 
        System.out.print(getAverageDistance);
        // Allows for change of speed limit on SmartDashboard for testing/demo 
 
@@ -92,6 +92,10 @@ public class Drive {
 
     public void subclassTurn(double turnValue, double moveValue) {
         differentialDrive.arcadeDrive(turnValue, moveValue, false);
+    }
+
+    public void subclassDrive(double driveValue, double moveValue) {
+        differentialDrive.arcadeDrive(driveValue, moveValue, false);
     }
 
     public void auto(double x, double y) {

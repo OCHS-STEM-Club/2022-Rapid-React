@@ -36,6 +36,7 @@ public class Limelight {
   
     private double targetValue;
     private double turnOutput;
+    private double driveOutput;
     private final double MAX_STEER = 0.1;
     private final double STEER_K = 0.075;
 
@@ -96,6 +97,20 @@ public class Limelight {
             turnOutput = targetOffsetAngle_Horizontal * STEER_K; //or divid by max value (27 degrees)
             turnOutput = clamp(turnOutput, -MAX_STEER, MAX_STEER);
             return turnOutput;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    public double trackDrive() {
+        targetValue = getDistance();
+        SmartDashboard.putNumber("distance", targetValue);
+    
+        if (targetValue < 100 || targetValue > 110) {
+            //driveOutput = getDistance() * STEER_K; //or divid by max value (27 degrees)
+            driveOutput = clamp(driveOutput, -MAX_STEER, MAX_STEER);
+            return driveOutput;
         }
         else {
             return 0;

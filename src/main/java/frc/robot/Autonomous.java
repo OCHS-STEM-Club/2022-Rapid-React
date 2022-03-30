@@ -99,10 +99,10 @@ public class Autonomous{
             intakeMotor.intakeAuto(0);
             driveManager.auto(0,0);
         // start index wheel (shoots ball)
-        } else if (timer.get() > 2.5 && timer.get() < 4.25) {
+        } else if (timer.get() > 2.5 && timer.get() < 4) {
             driveManager.auto(0,-0.3);
-            shooterMotor.shooterAuto(2900);
-        } else if (timer.get() > 4.25 && timer.get() < 4.75) {
+            shooterMotor.shooterAuto(2650);
+        } else if (timer.get() > 4 && timer.get() < 4.75) {
             driveManager.auto(0,0);
         } else if (timer.get() > 4.75 && timer.get() < 5.5) {
             indexerMotor.indexAuto(-0.75);
@@ -170,11 +170,11 @@ public Void limelightAutoSet() {
     if(controller.getRawButton(3) && limelight.getDistance() > 70 && limelight.getDistance() < 107) {
       shooterMotor.shooterAuto(2800);
     } else if (controller.getRawButton(3) && limelight.getDistance() > 108 && limelight.getDistance() < 140) {
-        shooterMotor.shooterAuto(2920); 
+        shooterMotor.shooterAuto(2800); 
     } else if (controller.getRawButton(3) && limelight.getDistance() > 141 && limelight.getDistance() < 160) {
-        shooterMotor.shooterAuto(3150);
+        shooterMotor.shooterAuto(2800);
      }else if (controller.getRawButton(3) && limelight.getDistance() > 160 && limelight.getDistance() < 190) {
-        shooterMotor.shooterAuto(3450);
+        shooterMotor.shooterAuto(2800);
      }else if(controller.getRawButton(3) && limelight.getDistance() == 149.930648) {
         shooterMotor.shooterAuto(2800);
     }else shooterMotor.shooterAuto(0);

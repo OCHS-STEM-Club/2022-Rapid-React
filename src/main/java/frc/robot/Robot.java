@@ -141,6 +141,9 @@ public class Robot extends TimedRobot {
     if (controller.getRawButton(8)) {
       visionTurn = limelight.trackTurn();
       driveManager.subclassTurn(visionTurn, controller.getRawAxis(4) * 0.5);
+    } else if (controller.getRawButton(7)) {
+      visionMove = limelight.trackDrive();
+      driveManager.subclassDrive(controller.getRawAxis(1) * 0.5, visionMove);
     }
     else {
       driveManager.drive();
