@@ -104,12 +104,14 @@ public class Limelight {
     }
 
     public double trackDrive() {
-        targetValue = getDistance();
-        SmartDashboard.putNumber("distance", targetValue);
-    
-        if (targetValue < 100 || targetValue > 110) {
-            //driveOutput = getDistance() * STEER_K; //or divid by max value (27 degrees)
-            driveOutput = clamp(driveOutput, -MAX_STEER, MAX_STEER);
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-khonsu");
+        targetOffsetAngle_Vertical = table.getEntry("ty").getDouble(0.0);
+        targetValue = table.getEntry("tv").getDouble(0.0);
+        SmartDashboard.putNumber("tv", targetValue);
+        
+        if (targetValue == 1) {
+            driveOutput = targetOffsetAngle_Vertical * STEER_K; //or divid by max value (27 degrees)
+            driveOutput = clamp(driveOutput, -0.2, 0.2);
             return driveOutput;
         }
         else {
