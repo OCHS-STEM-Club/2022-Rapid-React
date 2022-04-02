@@ -71,7 +71,7 @@ public class Shooter {
 
 
     public void shooter(){
-      velocityRPM = -1700;
+      velocityRPM = -2800;
       velocityWant = velocityRPM * 2048 / 600;
       //SmartDashboard.getNumber("shoot position", 12000);
       SmartDashboard.putNumber("velocity", -shooterMotor.getSelectedSensorVelocity());
@@ -79,18 +79,21 @@ public class Shooter {
 
        //double shooterMotorVelocityRPM = -shooterMotor.getSelectedSensorVelocity() / 2048 * 600;
     
-      /*if(controller.getRawButton(3)){
-        //shooterMotor.set(TalonFXControlMode.PercentOutput, -0.7);
+      if(controller.getRawButton(3)){
+        
         shooterMotor.set(ControlMode.Velocity, velocityWant);
-        //shooterMotor.set(shooterController.calculate(shooterMotor.getSelectedSensorVelocity(), -8000));
         System.out.print("shooter velocity " + shooterMotor.getSelectedSensorVelocity() + " velocityWant " + velocityWant + "\n");
-  
-
-       //shooterMotor.set(0.8);
-       */
-     
+         
       }
-  
+    }
+      public void bloop(){
+        if(controller.getRawButton(4)){
+            shooterMotor.set(1800);
+        }
+    }
+    
+         
+          
     
   
     public void shooterAuto(double x){

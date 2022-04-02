@@ -46,8 +46,44 @@ public class Autonomous{
         timer.reset();
         timer.start();
     }
-    
+    //Main 2 ball shoot auto
     public Void autonomousShoot2Balls() {
+        SmartDashboard.putNumber("Timer", timer.get());
+       
+        if (timer.get() < 0.5) {
+            intakeLiftMotor.intakeLiftMotorAuto(0.3);
+        } else if (timer.get() > 0.5 && timer.get() < 2.0) {
+            intakeLiftMotor.intakeLiftMotorAuto(0);
+            driveManager.auto(0,0.3);
+            intakeMotor.intakeAuto(-0.85);
+            // start shooter motor
+        } else if (timer.get() > 2 && timer.get() < 2.5) {
+            intakeMotor.intakeAuto(0);
+            driveManager.auto(0,0);
+        // start index wheel (shoots ball)
+        } else if (timer.get() > 2.5 && timer.get() < 4) {
+            driveManager.auto(0,-0.3);
+            shooterMotor.shooterAuto(2650);
+        } else if (timer.get() > 4 && timer.get() < 4.75) {
+            driveManager.auto(0,0);
+        } else if (timer.get() > 4.75 && timer.get() < 5.5) {
+            indexerMotor.indexAuto(-0.75);
+        } else if (timer.get() > 5.5 && timer.get() < 7.5) {
+            intakeMotor.intakeAuto(-0.85);
+            indexerMotor.indexAuto(0);
+        // start shooter
+        } else if (timer.get() > 7.5 && timer.get() < 9) {
+            indexerMotor.indexAuto(-0.75);
+        }else if (timer.get() > 9.0 && timer.get() < 15 ) {
+            shooterMotor.shooterAuto(0);
+            indexerMotor.indexAuto(0);
+            intakeMotor.intakeAuto(0);
+        // shuts off all motors
+        }
+        return null;
+    }
+// Another 2 Ball shoot
+    public Void autonomousShoot2Balls2() {
         SmartDashboard.putNumber("Timer", timer.get());
        
         if (timer.get() < 0.5) {
@@ -84,15 +120,16 @@ public class Autonomous{
         }
         return null;
     }
-//Second 2 ball shoot auto
-    public Void autonomousShoot2Balls2() {
+
+
+    public Void autonomousShoot2BallsWALL() {
         SmartDashboard.putNumber("Timer", timer.get());
        
         if (timer.get() < 0.5) {
             intakeLiftMotor.intakeLiftMotorAuto(0.3);
         } else if (timer.get() > 0.5 && timer.get() < 2.0) {
             intakeLiftMotor.intakeLiftMotorAuto(0);
-            driveManager.auto(0,0.3);
+            driveManager.auto(0,0.15);
             intakeMotor.intakeAuto(-0.85);
             // start shooter motor
         } else if (timer.get() > 2 && timer.get() < 2.5) {
@@ -100,7 +137,7 @@ public class Autonomous{
             driveManager.auto(0,0);
         // start index wheel (shoots ball)
         } else if (timer.get() > 2.5 && timer.get() < 4) {
-            driveManager.auto(0,-0.3);
+            driveManager.auto(0,-0.15);
             shooterMotor.shooterAuto(2650);
         } else if (timer.get() > 4 && timer.get() < 4.75) {
             driveManager.auto(0,0);
@@ -128,7 +165,7 @@ public class Autonomous{
               intakeLiftMotor.intakeLiftMotorAuto(0.3);
           } else if (timer.get() > 0.5 && timer.get() < 3) {
               intakeLiftMotor.intakeLiftMotorAuto(0);
-              shooterMotor.shooterAuto(2800);
+              shooterMotor.shooterAuto(2700);
               // start shooter motor
           } else if (timer.get() > 3 && timer.get() < 4) {
               indexerMotor.indexAuto(-0.75);
@@ -162,32 +199,11 @@ public class Autonomous{
         }else if (timer.get() > 1.5){
             driveManager.auto(0,0);
         }
-        return null;
-        
-}
-
-public Void limelightAutoSet() {
-    if(controller.getRawButton(3) && limelight.getDistance() > 70 && limelight.getDistance() < 107) {
-      shooterMotor.shooterAuto(2800);
-    } else if (controller.getRawButton(3) && limelight.getDistance() > 108 && limelight.getDistance() < 140) {
-        shooterMotor.shooterAuto(2800); 
-    } else if (controller.getRawButton(3) && limelight.getDistance() > 141 && limelight.getDistance() < 160) {
-        shooterMotor.shooterAuto(2800);
-     }else if (controller.getRawButton(3) && limelight.getDistance() > 160 && limelight.getDistance() < 190) {
-        shooterMotor.shooterAuto(2800);
-     }else if(controller.getRawButton(3) && limelight.getDistance() == 149.930648) {
-        shooterMotor.shooterAuto(2800);
-    }else shooterMotor.shooterAuto(0);
-    return null;
-  }
-
-public Void bloop(){
-    if(controller.getRawButton(4)){
-        shooterMotor.shooterAuto(1800);
+        return null; 
     }
-    return null;
 }
-}
-     
-      
+
+
+
+
     
