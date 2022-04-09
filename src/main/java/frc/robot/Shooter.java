@@ -35,7 +35,7 @@ public class Shooter {
     //shooterMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10;);
     shooterMotor.setSensorPhase(false);
     shooterMotor.setInverted(true);
-    shooterMotor.config_kP(0, 0.7, 10);
+    shooterMotor.config_kP(0, 0.089534, 10);
     shooterMotor.config_kI(0, 0.0001, 10);
     shooterMotor.config_kD(0, 20, 10);
     shooterMotor.setNeutralMode(NeutralMode.Coast);
