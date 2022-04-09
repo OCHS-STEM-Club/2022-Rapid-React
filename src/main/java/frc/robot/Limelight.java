@@ -15,7 +15,7 @@ public class Limelight {
     NetworkTableEntry ta = table.getEntry("ta");
     NetworkTableEntry tl = table.getEntry("tl");
     
-    static double  limelightMountAngleDegrees = 30; //mount angle from vertical
+    static double  limelightMountAngleDegrees = 89.75; //mount angle from vertical
     static double limelightLensHeightInches = 17.4375; //distance (in) from center of limelight lenses to floor
     static double goalHeightInches = 104; //height of upper hub
 

@@ -71,7 +71,7 @@ public class Shooter {
 
 
     public void shooter(){
-      velocityRPM = -2800;
+      velocityRPM = -2600;
       velocityWant = velocityRPM * 2048 / 600;
       //SmartDashboard.getNumber("shoot position", 12000);
       SmartDashboard.putNumber("velocity", -shooterMotor.getSelectedSensorVelocity());
@@ -80,16 +80,12 @@ public class Shooter {
        //double shooterMotorVelocityRPM = -shooterMotor.getSelectedSensorVelocity() / 2048 * 600;
     
       if(controller.getRawButton(3)){
-        
+      
         shooterMotor.set(ControlMode.Velocity, velocityWant);
         System.out.print("shooter velocity " + shooterMotor.getSelectedSensorVelocity() + " velocityWant " + velocityWant + "\n");
-         
-      }
-    }
-      public void bloop(){
-        if(controller.getRawButton(4)){
-            shooterMotor.set(1800);
-        }
+      } else if (controller.getRawButton(4)){
+        shooterMotor.set(ControlMode.Velocity, -2100);
+      } else shooterMotor.set(0);
     }
     
          

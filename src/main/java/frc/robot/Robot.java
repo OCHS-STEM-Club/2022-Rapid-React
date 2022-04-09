@@ -153,6 +153,7 @@ public class Robot extends TimedRobot {
     driveManager.creep();
 
     shooterMotor.shooter();
+    //shooterMotor.bloop();
     shooterMotor.shooterTemperatureAndPosition();
    
     indexerMotor.indexWheel();

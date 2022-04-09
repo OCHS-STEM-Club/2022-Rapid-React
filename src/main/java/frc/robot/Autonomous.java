@@ -127,32 +127,37 @@ public class Autonomous{
        
         if (timer.get() < 0.5) {
             intakeLiftMotor.intakeLiftMotorAuto(0.3);
-        } else if (timer.get() > 0.5 && timer.get() < 2.0) {
+        } else if (timer.get() > 0.5 && timer.get() < 3.0) {
             intakeLiftMotor.intakeLiftMotorAuto(0);
             driveManager.auto(0,0.15);
             intakeMotor.intakeAuto(-0.85);
             // start shooter motor
-        } else if (timer.get() > 2 && timer.get() < 2.5) {
+        } else if (timer.get() > 3 && timer.get() < 3.5) {
             intakeMotor.intakeAuto(0);
             driveManager.auto(0,0);
         // start index wheel (shoots ball)
-        } else if (timer.get() > 2.5 && timer.get() < 4) {
+        } else if (timer.get() > 3.5 && timer.get() < 5) {
             driveManager.auto(0,-0.15);
             shooterMotor.shooterAuto(2650);
-        } else if (timer.get() > 4 && timer.get() < 4.75) {
+            intakeLiftMotor.intakeLiftMotorAuto(-0.2);
+        } else if (timer.get() > 5 && timer.get() < 5.75) {
             driveManager.auto(0,0);
-        } else if (timer.get() > 4.75 && timer.get() < 5.5) {
+            intakeLiftMotor.intakeLiftMotorAuto(-0);
+        } else if (timer.get() > 5.75 && timer.get() < 6.5) {
             indexerMotor.indexAuto(-0.75);
-        } else if (timer.get() > 5.5 && timer.get() < 7.5) {
+        } else if (timer.get() > 6.5 && timer.get() < 8.5) {
             intakeMotor.intakeAuto(-0.85);
             indexerMotor.indexAuto(0);
         // start shooter
-        } else if (timer.get() > 7.5 && timer.get() < 9) {
+        } else if (timer.get() > 8.5 && timer.get() < 10) {
             indexerMotor.indexAuto(-0.75);
-        }else if (timer.get() > 9.0 && timer.get() < 15 ) {
+        }else if (timer.get() > 10.0 && timer.get() < 12.25 ) {
+            driveManager.auto(0,0.15);
             shooterMotor.shooterAuto(0);
             indexerMotor.indexAuto(0);
             intakeMotor.intakeAuto(0);
+        }else if (timer.get() > 12.25 && timer.get() < 15 ) {
+            driveManager.auto(0,0);
         // shuts off all motors
         }
         return null;
