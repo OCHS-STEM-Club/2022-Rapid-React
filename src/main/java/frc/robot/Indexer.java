@@ -5,6 +5,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.revrobotics.CANSparkMax;
 /*import com.revrobotics.ColorMatch;
 //import com.revrobotics.ColorMatchResult;
@@ -16,6 +17,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 */
+import com.revrobotics.CANSparkMax.IdleMode;
 
 
 public class Indexer {
@@ -33,7 +35,10 @@ public void indexWheel(){
      indexerMotor.set(0);
      }
    }
-
+   
+public void indexMotorControl(){
+  indexerMotor.setIdleMode(IdleMode.kBrake);
+}
 
 public void indexAuto(double x){
   indexerMotor.set(x);

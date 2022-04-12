@@ -61,6 +61,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     SmartDashboard.putNumber("Top Speed", 0.5);
     driveManager.motorSettings();
+    indexerMotor.indexMotorControl();
     
 
   }
@@ -168,6 +169,7 @@ public class Robot extends TimedRobot {
     //shooterPotentiometer.setHood();
     shooterPotentiometer.hoodPotentiometer();
     shooterPotentiometer.hoodMotor3();
+    shooterPotentiometer.hoodMotor2();
    //limelight.limelight();
 
     //autonomous.limelightAutoSet();
