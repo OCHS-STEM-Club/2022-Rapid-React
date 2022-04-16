@@ -63,7 +63,7 @@ public class Autonomous{
         // start index wheel (shoots ball)
         } else if (timer.get() > 2.5 && timer.get() < 4) {
             driveManager.auto(0,-0.3);
-            shooterMotor.shooterAuto(2650);
+            shooterMotor.shooterAuto(2500);
         } else if (timer.get() > 4 && timer.get() < 4.75) {
             driveManager.auto(0,0);
         } else if (timer.get() > 4.75 && timer.get() < 5.5) {
@@ -127,36 +127,36 @@ public class Autonomous{
        
         if (timer.get() < 0.5) {
             intakeLiftMotor.intakeLiftMotorAuto(0.3);
-        } else if (timer.get() > 0.5 && timer.get() < 3.0) {
+        } else if (timer.get() > 0.5 && timer.get() < 3.5) {
             intakeLiftMotor.intakeLiftMotorAuto(0);
             driveManager.auto(0,0.15);
             intakeMotor.intakeAuto(-0.85);
             // start shooter motor
-        } else if (timer.get() > 3 && timer.get() < 3.5) {
-            intakeMotor.intakeAuto(0);
+        } else if (timer.get() > 3.5 && timer.get() < 4) {
             driveManager.auto(0,0);
         // start index wheel (shoots ball)
-        } else if (timer.get() > 3.5 && timer.get() < 5) {
+        } else if (timer.get() > 4 && timer.get() < 6) {
             driveManager.auto(0,-0.15);
             shooterMotor.shooterAuto(2650);
-            intakeLiftMotor.intakeLiftMotorAuto(-0.2);
-        } else if (timer.get() > 5 && timer.get() < 5.75) {
+            intakeMotor.intakeAuto(0);
+        } else if (timer.get() > 6 && timer.get() < 6.75) {
             driveManager.auto(0,0);
-            intakeLiftMotor.intakeLiftMotorAuto(-0);
-        } else if (timer.get() > 5.75 && timer.get() < 6.5) {
+        } else if (timer.get() > 6.75 && timer.get() < 7.5) {
             indexerMotor.indexAuto(-0.75);
-        } else if (timer.get() > 6.5 && timer.get() < 8.5) {
+        } else if (timer.get() > 7.5 && timer.get() < 9.5) {
             intakeMotor.intakeAuto(-0.85);
             indexerMotor.indexAuto(0);
         // start shooter
-        } else if (timer.get() > 8.5 && timer.get() < 10) {
+        } else if (timer.get() > 9.5 && timer.get() < 10.5) {
+            intakeLiftMotor.intakeLiftMotorAuto(-0.2);
             indexerMotor.indexAuto(-0.75);
-        }else if (timer.get() > 10.0 && timer.get() < 12.25 ) {
+            intakeMotor.intakeAuto(0);
+        }else if (timer.get() > 10.5 && timer.get() < 12.75 ) {
             driveManager.auto(0,0.15);
             shooterMotor.shooterAuto(0);
             indexerMotor.indexAuto(0);
-            intakeMotor.intakeAuto(0);
-        }else if (timer.get() > 12.25 && timer.get() < 15 ) {
+            intakeLiftMotor.intakeLiftMotorAuto(-0);
+        }else if (timer.get() > 12.75 && timer.get() < 15 ) {
             driveManager.auto(0,0);
         // shuts off all motors
         }
