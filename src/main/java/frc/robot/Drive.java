@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,7 +19,7 @@ public class Drive {
 
     public DifferentialDrive differentialDrive = new DifferentialDrive(driveMotorLeft1, driveMotorRight1);
 
-    private XboxController controller = new XboxController(0);
+    private PS4Controller controller = new PS4Controller(0);
 
     PIDController driveController = new PIDController(2.3449, 0, 0.19168);
 
@@ -67,9 +68,9 @@ public class Drive {
        System.out.print(getAverageDistance);
        // Allows for change of speed limit on SmartDashboard for testing/demo 
 
-        xStickValue = controller.getRawAxis(4) * topSpeed * creepSpeed;
+        xStickValue = controller.getRawAxis(5) * topSpeed * creepSpeed;
         yStickValue = -controller.getRawAxis(1) * topSpeed * creepSpeed;
-        differentialDrive.arcadeDrive(xStickValue, yStickValue, false);
+        differentialDrive.tankDrive(xStickValue, yStickValue, false);
 
     }
 
@@ -92,11 +93,11 @@ public class Drive {
     }
 
     public void subclassTurn(double turnValue, double moveValue) {
-        differentialDrive.arcadeDrive(turnValue, moveValue, false);
+        differentialDrive.tankDrive(turnValue, moveValue, false);
     }
 
     public void auto(double x, double y) {
-        differentialDrive.arcadeDrive(x ,y , false);
+        differentialDrive.tankDrive(x ,y , false);
     }
 
     

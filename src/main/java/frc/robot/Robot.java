@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.PS4Controller;
 
 
 
@@ -30,7 +30,7 @@ public class Robot extends TimedRobot {
   Limelight limelight = new Limelight();
   Autonomous autonomous = new Autonomous(indexerMotor, shooterMotor, intakeMotor, driveManager, intakeMotor, limelight);
 
-  private XboxController controller = new XboxController(0);
+  private PS4Controller controller = new PS4Controller(0);
 
   double visionTurn;
   double visionMove;
